@@ -19,7 +19,7 @@
 	position: relative;
 	overflow: hidden;
 }
-.mtqscrollable .items { 
+.mtqscrollable .items {
 	/* this cannot be too large */
 	width: 20000em;
 	position: absolute;
@@ -76,11 +76,11 @@
 	color: #FFF;
 }
 .mtq_list_item-wrong, .mtq_list_item.mtq_list_item_complete.mtq_list_item-wrong {
-	background:#B5281E!important;
+	background:lightpink!important;
 	color: #FFF
 }
 .mtq_list_item-correct, .mtq_list_item.mtq_list_item_complete.mtq_list_item-correct {
-	background: #063!important;
+	background: #ADE0C1!important;
 	color: #FFF;
 }
 .mtq_list_item-partial,.mtq_list_item.mtq_list_item_complete.mtq_list_item-partial {
@@ -201,6 +201,7 @@
 }
 .mtq_answer_td {
 	margin-left: .25em;
+	/* border-left: 5px solid aquamarine; */
 }
 .mtq_letter_button_td {
 	width: 30px;

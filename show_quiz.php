@@ -1,18 +1,18 @@
 <?php
 	require_once('wpframe.php');
-	
+
 	if(!isset($GLOBALS['mtq_number_displayed'])) {
 		$GLOBALS['mtq_number_displayed'] = 1;
 	} else {
 		$GLOBALS['mtq_number_displayed']++;
-	} 
+	}
 	if (true) {
-		
+
 		global $wpdb;
 		$GLOBALS['wpframe_plugin_name'] = basename(dirname(__FILE__));
 		$GLOBALS['wpframe_plugin_folder'] = $GLOBALS['wpframe_wordpress'] . '/wp-content/plugins/' . $GLOBALS['wpframe_plugin_name'];
 
-		$quiz_options = $wpdb->get_row($wpdb->prepare("SELECT name,description,answer_mode,single_page,show_hints,show_start,show_final,multiple_chances,final_screen,random_questions,random_answers FROM {$wpdb->prefix}mtouchquiz_quiz WHERE ID=%d", $quiz_id));			 		
+		$quiz_options = $wpdb->get_row($wpdb->prepare("SELECT name,description,answer_mode,single_page,show_hints,show_start,show_final,multiple_chances,final_screen,random_questions,random_answers FROM {$wpdb->prefix}mtouchquiz_quiz WHERE ID=%d", $quiz_id));
 		$final_screen = stripslashes($quiz_options->final_screen);
 		$answer_display = stripslashes($quiz_options->answer_mode);
 		$single_page = stripslashes($quiz_options->single_page);
@@ -22,95 +22,95 @@
 		$multiple_chances = stripslashes($quiz_options->multiple_chances);
 		$random_questions = stripslashes($quiz_options->random_questions);
 		$random_answers = stripslashes($quiz_options->random_answers);
-		
+
 		$mtq_show_alerts = get_option('mtouchquiz_showalerts');
-		
+
 		$dquizfm = $wpdb->get_row($wpdb->prepare("SELECT form_code FROM {$wpdb->prefix}mtouchquiz_quiz WHERE ID=%d", $quiz_id));
 		$form_code = stripslashes($dquizfm->form_code);
 		$form_id= $form_code;
 		$tquizfm = $wpdb->get_row($wpdb->prepare("SELECT time_limit FROM {$wpdb->prefix}mtouchquiz_quiz WHERE ID=%d", $quiz_id));
 		$db_time = stripslashes($tquizfm->time_limit);
-		
+
 		$mtq_cf7_addon_active = mtq_check_addon_cf7_active();
 		$mtq_cf7_active = mtq_check_cf7_active();
 		$mtq_cf7_addon_exists =  mtq_check_addon_cf7_exists();
 		$mtq_cf7_exists = mtq_check_cf7_exists();
 		$mtq_cf7_allgood = mtq_check_all_cf7();
-	  
+
 		$mtq_gf_addon_active = mtq_check_addon_gf_active();
 		$mtq_gf_active = mtq_check_gf_active();
 		$mtq_gf_addon_exists =  mtq_check_addon_gf_exists();
 		$mtq_gf_exists = mtq_check_gf_exists();
 		$mtq_gf_allgood = mtq_check_all_gf();
-		
+
 		$mtq_form_present = 0;
-		
+
 		$mtq_use_gf = 0;
 		$mtq_use_cf = 0;
-		
+
 		if ( $mtq_cf7_allgood || $mtq_gf_allgood ) {
 			if ( strlen($form_code) ) {
 				if ( $forcegf ) {
-					$mtq_use_gf = 1;	
+					$mtq_use_gf = 1;
 				} elseif ($forcecf) {
 					$mtq_use_cf = 1;
-					
+
 				} elseif ($mtq_gf_allgood ) {
 					$mtq_use_gf = 1;
-					
+
 				} elseif ($mtq_cf7_allgood ) {
 					$mtq_use_cf = 1;
 				}
-			}	
+			}
 		}
-		
+
 		if ( $input_formid != -1 ) {
 			$form_code = $input_formid;
 		}
-		
+
 		$gf_formid_number = $form_code;
-		
+
 		if ( $mtq_use_gf && $mtq_gf_allgood ) {
 			$mtq_form_present = 1;
 			if ( substr($form_code,0,1) != "[" ) {
 				$form_code = "[gravityform id=" .$form_code;
 			}
-			
+
 			if ( substr($form_code,-1) == "]" ) {
 				$form_code=str_replace("]","",$form_code) ;
 			}
-			
+
 			if ( !strpos($form_code,"ajax") ) {
 				$form_code.=" ajax=true ";
 			}
-			
+
 			if ( substr($form_code,-1) != "]" ) {
 				$form_code .="]" ;
 			}
 		}
-		
-		
-		
+
+
+
 		if ( $mtq_use_cf && $mtq_cf7_allgood ) {
 			$mtq_form_present = 1;
 			if ( substr($form_code,0,1) != "[" ) {
 				$form_code = '[contact-form-7 id="' .$form_code.'"';
 			}
-						
+
 			if ( substr($form_code,-1) != "]" ) {
 				$form_code .="]" ;
 			}
 		}
-		
+
 		if ( $forcecf ) {
 			$mtq_use_cf = 1;
 		}
-		
+
 		if ( $forcegf || $inform ) {
 			$mtq_use_gf = 1;
 		}
-		
-		
+
+
 		if ( $input_randomq != -1 ) {
 			if ( $input_randomq == 'on' ){
 				$random_questions = 1;
@@ -118,7 +118,7 @@
 				$random_questions = 0;
 			}
 		}
-		
+
 		if ( $input_alerts != -1 ) {
 			if ( $input_alerts == 1 ){
 				$mtq_show_alerts = 1;
@@ -126,7 +126,7 @@
 				$mtq_show_alerts = 0;
 			}
 		}
-		
+
 		if ( $input_randoma != -1 ) {
 			if ( $input_randoma == 'on' ){
 				$random_answers = 1;
@@ -134,7 +134,7 @@
 				$random_answers = 0;
 			}
 		}
-		
+
 		if ( $input_singlepage != -1 ) {
 			if ( $input_singlepage == 'on' ){
 				$single_page = 1;
@@ -142,11 +142,11 @@
 				$single_page = 0;
 			}
 		}
-		
+
 		if ( $inform ) {
 			$single_page = 1;
 		}
-		
+
 		if ( $input_hints!= -1 ) {
 			if ( $input_hints == 'on' ){
 				$show_hints = 1;
@@ -154,9 +154,9 @@
 				$show_hints = 0;
 			}
 		}
-		
-		
-		
+
+
+
 		if ( $input_startscreen!= -1 ) {
 			if ( $input_startscreen == 'on' ){
 				$show_start = 1;
@@ -164,7 +164,7 @@
 				$show_start = 0;
 			}
 		}
-		
+
 
 		if ( $input_showanswers != -1 ) {
 			if ( $input_showanswers == 'never' ){
@@ -175,9 +175,9 @@
 				$answer_display = 2;
 			}
 		}
-		
-		
-		
+
+
+
 		if ( $input_finalscreen != -1 ) {
 			if ( $input_finalscreen == 'on' ){
 				$show_final = 1;
@@ -185,9 +185,9 @@
 				$show_final = 0;
 			}
 		}
-		
-		
-		
+
+
+
 		if ( $input_multiplechances!= -1 ) {
 			if ( $input_multiplechances == 'on' ){
 				$multiple_chances = 1;
@@ -195,16 +195,16 @@
 				$multiple_chances = 0;
 			}
 		}
-		
-		
+
+
 		if( $multiple_chances == 1  ) {
 			$answer_display = 2; // You cannot allow multiple chances and not show the answers immediately.
 		}
-		
+
 		if ( $single_page ) {
-			$show_list = 0;	
+			$show_list = 0;
 		}
-		
+
 		if ( $proofread ) {
 			$random_answers = 0;
 			$random_questions = 0;
@@ -214,34 +214,34 @@
 		}
 
 
-		
+
 		$mtq_all_vars = "";
-		$number_questions_available = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id=%d",$quiz_id)); 
+		$number_questions_available = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id=%d",$quiz_id));
 		if ($input_number_questions <= 0){ // If the user didn't specify the number of questions, then get them all
 			$input_number_questions = $number_questions_available;
 		}
-		
-	
-		
+
+
+
 		$foff = $offset_start - 1;
 		if ( $offset_stop ) {
 			$loff = $offset_stop - 1;
-		}		
+		}
 
 		//$first_id_value = $wpdb->get_var($wpdb->prepare("SELECT ID FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id=$quiz_id ORDER BY ID LIMIT 0, 1"));//,0,$offset_start-1);
-		$first_id_value = $wpdb->get_var("SELECT ID FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id=$quiz_id ORDER BY ID",0,$foff);  
+		$first_id_value = $wpdb->get_var("SELECT ID FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id=$quiz_id ORDER BY ID",0,$foff);
 		if ( $offset_stop ) {
 			$last_id_value = $wpdb->get_var("SELECT ID FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id=$quiz_id ORDER BY ID",0,$loff);
 		} else {
 			$last_id_value = $wpdb->get_var("SELECT ID FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id=$quiz_id ORDER BY ID",0,$number_questions_available-1);
 		}
-		
+
 		if ( ! $mtq_use_timer  && $db_time > 0) {
 			$mtq_max_time = $db_time;
 			$mtq_use_timer = 1;
 		}
-		
-		
+
+
 		$theexecutedcode = '';
 		$theexecutedcode.= "mtouchquiz id=".$quiz_id;
 		$theexecutedcode.=" alerts=".$mtq_show_alerts;
@@ -269,21 +269,21 @@
 		$theexecutedcode.=" forcecf=".$forcecf;
 		$theexecutedcode.=" forcegf=".$forcegf;
 		$replace_these	= array('1','0');
-		$with_these = array ('on','off');	
+		$with_these = array ('on','off');
 		$theexecutedcode = str_replace($replace_these, $with_these,$theexecutedcode);
 		$replace_these	= array('id=on','showanswers=off','showanswers=on','showanswers=2');
 		$with_these = array ('id=1','showanswers=never','showanswers=end','showanswers=now');
 		$theexecutedcode = str_replace($replace_these, $with_these,$theexecutedcode);
-		
+
 		$theexecutedcode.= " offset=".$offset_start;
 		$theexecutedcode.= " questions=".$input_number_questions;
-		$theexecutedcode.= " firstid=".$first_id_value;	
-		$theexecutedcode.= " lastid=".$last_id_value;	
+		$theexecutedcode.= " firstid=".$first_id_value;
+		$theexecutedcode.= " lastid=".$last_id_value;
 		$theexecutedcode.=	"";
-		
-		
+
+
 		if ( $input_color == 'random') {
-			
+
 			$mtq_possible_colors=mtq_color_options();
 			$mtq_color=$mtq_possible_colors[array_rand($mtq_possible_colors,1)];
 			$theexecutedcode.= " color=random(".$mtq_color.")";
@@ -291,9 +291,9 @@
 			$mtq_color=$input_color;
 			$theexecutedcode.= " color=".$mtq_color;
 		}
-		
+
 		// Thanks http://ranawd.wordpress.com/2009/03/25/select-random-value-from-mysql-database-table/
-		
+
 		if( $random_questions == 1 && $input_number_questions > 0 ) { // Select questions randomly
 			$all_question = $wpdb->get_results($wpdb->prepare("SELECT ID,question,explanation, point_value FROM {$wpdb->prefix}mtouchquiz_question WHERE quiz_id=%d AND ID>=$first_id_value AND ID<=$last_id_value ORDER BY RAND() LIMIT 0, $input_number_questions", $quiz_id));
 		} elseif( $random_questions != 1 && $input_number_questions > 0 ) { // Select questions in order
@@ -303,55 +303,55 @@
 		}
 
 
-		if($all_question) 
+		if($all_question)
 		{
-			
+
 			$mtqid = $GLOBALS['mtq_number_displayed']; ?>
 <?php if ( $proofread == 1 ) { ?>
 <link type="text/css" rel="stylesheet" href="<?php echo $GLOBALS['wpframe_plugin_folder']?>/proofread.min.css" />
 <?php
-			} 
+			}
 			?>
-<?php 
+<?php
 				//$GLOBALS['mtq_client_includes_loaded'] = true; // Make sure that this code is not loaded more than once.
 			//}
-				if(isset($_REQUEST['action']) and $_REQUEST['action']) 
-				{ 
+				if(isset($_REQUEST['action']) and $_REQUEST['action'])
+				{
 					// Quiz Results.
 					// Replaced with client side javascript
 				} else  // Show The Quiz.
-				{ 
+				{
 				?>
-<div id="mtq_quiz_area-<?php echo $mtqid ?>" class="mtq_quiz_area mtq_color_<?php echo $mtq_color?>"> 
+<div id="mtq_quiz_area-<?php echo $mtqid ?>" class="d-flex flex-column mtq_quiz_area mtq_color_<?php echo $mtq_color?>">
   <!--Quiz generated using <?php echo mtq_DISPLAY_NAME ?> Version <?php echo mtq_VERSION ?> by G. Michael Guy (<?php echo mtq_URL ?>)-->
   <?php if  ( $mtq_gf_addon_active ) {
-	echo "<!--Enhanced with ".mtq_gf_DISPLAY_NAME." Version ".mtq_gf_VERSION ." (". mtq_gf_URL.")-->" ; 
+	echo "<!--Enhanced with ".mtq_gf_DISPLAY_NAME." Version ".mtq_gf_VERSION ." (". mtq_gf_URL.")-->" ;
 	if ( ! $mtq_gf_addon_exists ) {
-		echo "<!--(Gravity Forms Plugin is NOT installed, however.)-->" ; 
+		echo "<!--(Gravity Forms Plugin is NOT installed, however.)-->" ;
 	}
 	elseif ( ! $mtq_gf_active ) {
-		echo "<!--(Gravity Forms Plugin is installed but NOT active.)-->" ; 
+		echo "<!--(Gravity Forms Plugin is installed but NOT active.)-->" ;
 	}
   }?>
   <?php if  ( $mtq_cf7_addon_active ) {
-	echo "<!--Enhanced with ".mtq_cf7_DISPLAY_NAME." Version ".mtq_cf7_VERSION ." (". mtq_cf7_URL.")-->" ; 
+	echo "<!--Enhanced with ".mtq_cf7_DISPLAY_NAME." Version ".mtq_cf7_VERSION ." (". mtq_cf7_URL.")-->" ;
 	if ( ! $mtq_cf7_addon_exists ) {
-		echo "<!--(Contact Form 7 Plugin is NOT installed, however.)-->" ; 
+		echo "<!--(Contact Form 7 Plugin is NOT installed, however.)-->" ;
 	}
 	elseif ( ! $mtq_cf7_active ) {
-		echo "<!--(Contact Form 7 Plugin is installed but NOT active.)-->" ; 
+		echo "<!--(Contact Form 7 Plugin is installed but NOT active.)-->" ;
 	}
   }?>
   <?php if  ( mtq_check_all_timer() ) {
-	echo "<!--Enhanced with ".mtq_timer_DISPLAY_NAME." Version ".mtq_timer_VERSION ." (". mtq_timer_URL.")-->" ; 
+	echo "<!--Enhanced with ".mtq_timer_DISPLAY_NAME." Version ".mtq_timer_VERSION ." (". mtq_timer_URL.")-->" ;
   }?>
-  
+
     <?php if  ( mtq_check_theme_addon_exists() ) {
-	echo "<!--Enhanced with ".mtq_theme_DISPLAY_NAME." Version ".mtq_theme_VERSION ." (". mtq_theme_URL.")-->" ; 
+	echo "<!--Enhanced with ".mtq_theme_DISPLAY_NAME." Version ".mtq_theme_VERSION ." (". mtq_theme_URL.")-->" ;
   }?>
-  
-  <!-- Shortcode entered <?php echo $thetypedcode; ?> --> 
-  <!-- Shortcode interpreted <?php echo $theexecutedcode;?> --> 
+
+  <!-- Shortcode entered <?php echo $thetypedcode; ?> -->
+  <!-- Shortcode interpreted <?php echo $theexecutedcode;?> -->
   <!--form action="" method="post" class="quiz-form" id="quiz-<?php echo $quiz_id?>"-->
   <?php $mtq_all_vars.="<input type='hidden' id='mtq_id-{$mtqid}' name='mtq_id_value' value='{$mtqid}' />"; ?>
   <div id="mtq_quiztitle-<?php echo $mtqid ?>" class="mtq_quiztitle" <?php if ( ! $show_title ) { echo "style='display:none'"; } ?>>
@@ -372,15 +372,15 @@
   <div id="mtq_instructions-<?php echo $mtqid ?>" class="mtq_instructions"><?php echo stripslashes($quiz_options->description)?></div> <div id="mtq_start_button-<?php echo $mtqid ?>" class='mtq_action_button mtq_css_button mtq_start_button' onclick='mtq_start_quiz(<?php echo $mtqid ?>)'> <div class="mtq_start_text">
   <?php _e("Start", 'mtouchquiz'); ?>
   </div> </div>
-  <?php } 
+  <?php }
 if ($show_final ) {?>
-<div id="mtq_quiz_results_bubble-<?php echo $mtqid ?>" class="mtq_quiz_results_bubble"> <div id="mtq_quiz_results-<?php echo $mtqid ?>" class="mtq_quiz_results"><?php echo str_replace('%%QUIZ_NAME%%','<em>'.stripslashes($quiz_options->name).'</em>',$final_screen);?> <br>    
+<div id="mtq_quiz_results_bubble-<?php echo $mtqid ?>" class="mtq_quiz_results_bubble"> <div id="mtq_quiz_results-<?php echo $mtqid ?>" class="mtq_quiz_results"><?php echo str_replace('%%QUIZ_NAME%%','<em>'.stripslashes($quiz_options->name).'</em>',$final_screen);?> <br>
   </div><?php if  ( $mtq_form_present && ! ( $inform ) ) { ?>
     <div id="mtq_contact_form-<?php echo $mtqid ?>"> <?php echo ($form_code); ?> </div>
     <?php } ?> <div id="mtq_quiz_results_highlight-<?php echo $mtqid ?>" class="mtq_quiz_results_highlight">
   <?php _e('Your answers are highlighted below.', 'mtouchquiz'); ?>
   </div> </div>
-  <?php } 
+  <?php }
 			if ($mtq_mobile_device ){
 				?>
   <div id='mtq_view_anchor-<?php echo $mtqid ?>'></div>
@@ -388,23 +388,31 @@ if ($show_final ) {?>
 			}
 		//}
 		?>
-  
+
   <!-- root element for mtqscrollable -->
 
-  <div id="mtq_question_container-<?php echo $mtqid ?>" <?php if ( $show_start ) { echo "style='display:none'"; } ?>>
+
+
+
+  <div class="lwd-quiz order-1" id="mtq_question_container-<?php echo $mtqid ?>" <?php if ( $show_start ) { echo "style='display:none'"; } ?>>
   <div <?php if (!$single_page) { echo "class='mtqscrollable' id='mtq_scroll_container-{$mtqid}'";}?>>
     <?php if (!$single_page) {?>
     <!-- root element for the items -->
-    
+
     <div id="mtq_scroll_items_container-<?php echo $mtqid ?>" class="items">
       <?php }?>
       <?php
-								
+
 							$question_count = 1;
 								foreach ($all_question as $ques) {
-									echo   "<div class='mtq_question mtq_scroll_item-$mtqid' id='mtq_question-$question_count-$mtqid'>"; 
+									echo   "<div class='mtq_question mtq_scroll_item-$mtqid' id='mtq_question-$question_count-$mtqid'>";
 											echo   "<table class='mtq_question_heading_table'><tr><td>";
-												if ( $show_labels ) { 
+												if ( $show_labels ) {
+
+
+
+
+
 												echo   "<div class='mtq_question_label '>";
 													ob_start();
 															printf(__('Question %d', 'mtouchquiz'), $question_count);
@@ -424,10 +432,10 @@ if ($show_final ) {?>
 											$mtq_all_vars.=   "<input type='hidden' id='mtq_is_worth-{$question_count}-$mtqid' value='{$ques->point_value}'/>";
 											$mtq_all_vars.=   "<input type='hidden' id='mtq_num_attempts-{$question_count}-$mtqid' value='0'/>";
 											$mtq_all_vars.=   "<input type='hidden' id='mtq_points_awarded-{$question_count}-$mtqid' value='0'/>";
-											 echo   "<table class='mtq_answer_table'>";
-												 echo   "<colgroup>";
-													 echo   "<col class='mtq_oce_first'/>";
-												 echo   "</colgroup>";
+											 echo   "<div class='mtq_answer_table container'>";
+												//  echo   "<colgroup>";
+													//  echo   "<col class='mtq_oce_first'/>";
+												//  echo   "</colgroup>";
 												if ( $random_answers == 1 ) {
 													$dans = $wpdb->get_results("SELECT ID,answer,correct,hint FROM {$wpdb->prefix}mtouchquiz_answer WHERE question_id={$ques->ID} ORDER BY RAND()"); // This will randomize the question answer order
 												} else {
@@ -438,19 +446,19 @@ if ($show_final ) {?>
 												$mtq_the_alphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 												foreach ($dans as $ans) {
 													$image_number = ($answer_count-1) % 26;
-													echo   "<tr id='mtq_row-{$question_count}-{$answer_count}-$mtqid' onclick='mtq_button_click({$question_count},{$answer_count},$mtqid)' class='mtq_clickable'>";
-														echo   "<td class='mtq_letter_button_td'>";
-															echo   "<div id='mtq_button-{$question_count}-{$answer_count}-$mtqid' class='mtq_css_letter_button mtq_letter_button_{$image_number}'  alt='".$q_label .", Choice ".$answer_count."'>";															
-														echo   substr($mtq_the_alphabet,$answer_count-1,1)."</div>";
-														if ($ans->correct) {
-																echo   "<div id='mtq_marker-{$question_count}-{$answer_count}-$mtqid' class='mtq_marker mtq_correct_marker' alt='".__("Correct", 'mtouchquiz')."'></div>"; 
-																$num_correct++;
-														} else {
-																echo   "<div id='mtq_marker-{$question_count}-{$answer_count}-$mtqid' class='mtq_marker mtq_wrong_marker' alt='".__("Wrong", 'mtouchquiz')."'></div>"; 
-														}
-														
-														echo   "</td>";
-														echo   "<td class='mtq_answer_td'>";
+													echo   "<div id='mtq_row-{$question_count}-{$answer_count}-$mtqid' onclick='mtq_button_click({$question_count},{$answer_count},$mtqid)' class='mtq_clickable row'>";
+														// echo   "<div class='mtq_letter_button_td'>";
+														// 	echo   "<div id='mtq_button-{$question_count}-{$answer_count}-$mtqid' class='mtq_css_letter_button mtq_letter_button_{$image_number}'  alt='".$q_label .", Choice ".$answer_count."'>";
+														// echo   substr($mtq_the_alphabet,$answer_count-1,1)."</div>";
+														// if ($ans->correct) {
+														// 		echo   "<div id='mtq_marker-{$question_count}-{$answer_count}-$mtqid' class='mtq_marker mtq_correct_marker' alt='".__("Correct", 'mtouchquiz')."'></div>";
+														// 		$num_correct++;
+														// } else {
+														// 		echo   "<div id='mtq_marker-{$question_count}-{$answer_count}-$mtqid' class='mtq_marker mtq_wrong_marker' alt='".__("Wrong", 'mtouchquiz')."'></div>";
+														// }
+
+														// echo   "</div>";
+														echo   "<div class='mtq_answer_td m-3 shadow p-3 mb-5 bg-white rounded'>";
 															echo   "<div id='mtq_answer_text-{$question_count}-{$answer_count}-$mtqid' class='mtq_answer_text'>".stripslashes($ans->answer)."</div>";
 															$is_correct_value = '0';
 															if($ans->correct) $is_correct_value = '1';
@@ -461,19 +469,19 @@ if ($show_final ) {?>
 															if($ans->hint) $has_hint_value = '1';
 															$mtq_all_vars.=   "<input type='hidden' id='mtq_has_hint-{$question_count}-{$answer_count}-$mtqid' value='$has_hint_value'/>";
 															if ( $has_hint_value && $show_hints ) {
-															echo   "<div id='mtq_hint-$question_count-$answer_count-$mtqid' class='mtq_hint'>";					
+															echo   "<div id='mtq_hint-$question_count-$answer_count-$mtqid' class='mtq_hint'>";
 																echo   "<div class='mtq_hint_label'>".__('Hint', 'mtouchquiz').": </div>";
 																echo   "<div class='mtq_hint_text'>".stripslashes($ans->hint)."</div>";
 															echo   "</div>";
 															}
-														echo   "</td>";
-													echo   "</tr>";
+														echo   "</div>"; //col
+													echo   "</div>"; //end row
 													$answer_count++;
 												}
 												$answer_count--;
-											echo   "</table>";
+											echo   "</div>"; //end container
 
-											if ($ques->explanation) //Need to format this better 
+											if ($ques->explanation) //Need to format this better
 											{
 												echo   "<div id='mtq_question_explanation-{$question_count}-$mtqid' class='mtq_explanation'>";
 														echo   "<div class='mtq_explanation-label'>";
@@ -505,10 +513,10 @@ if ($show_final ) {?>
       <?php if (!$single_page) {?>
     </div>
     <?php } ?>
-    <!--End of mtqscrollable items--> 
-    
+    <!--End of mtqscrollable items-->
+
   </div>
-  <!--End of mtqscrollable--> 
+  <!--End of mtqscrollable-->
   <!--mtq_status-->
   <?php if ($show_status) { ?>
   <div id="mtq_quiz_status-<?php echo $mtqid ?>" class="mtq_quiz_status">
@@ -528,35 +536,46 @@ if ($show_final ) {?>
     </tr>
   </table>
   <?php } ?>
-  </div> 
+  </div>
+
+
+
   <!--Holds all questions-->
   <?php if ( $show_list ) {?>
-  <div id="mtq_navigator-<?php echo $mtqid ?>" class="mtq_navigator"> <div id='mtq_return_list_t-<?php echo $mtqid ?>' class="mtq_return_list mtq_css_button mtq_return_button" onclick='mtq_nav_click(0,<?php echo $mtqid ?>)'> <div class="mtq_return_text">
+  <div id="mtq_navigator-<?php echo $mtqid ?>" class="order-0 lwd-quiz-results mtq_navigator"> <div id='mtq_return_list_t-<?php echo $mtqid ?>' class="mtq_return_list mtq_css_button mtq_return_button" onclick='mtq_nav_click(0,<?php echo $mtqid ?>)'> <div class="mtq_return_text">
     <?php _e('Return', 'mtouchquiz');?>
     </div> </div> <div id="mtq_shaded_item_msg-<?php echo $mtqid ?>" class="mtq_shaded_item_msg">
     <?php _e('Shaded items are complete.','mtouchquiz');?>
     </div>
-    <table id="mtq_question_list_container-<?php echo $mtqid ?>" class="mtq_question_list_container">
-      <tr>
+
+
+
+
+    <div id="mtq_question_list_container-<?php echo $mtqid ?>" class="mtq_question_list_container container">
+      <div class="row lwd-quiz-progress-row">>
         <?php
-								 
+
 									for ($i=1; $i<=$question_count; $i++) {
-										echo "<td id='mtq_list_item-$i-$mtqid' class='mtq_list_item' onclick='mtq_nav_click($i,$mtqid)'>$i</td>";
+										echo "<div id='mtq_list_item-$i-$mtqid' class='mtq_list_item rounded col-sm' onclick='mtq_nav_click($i,$mtqid)'>$i</div>";
 										if ( ($i % 5) == 0 && $i > 1) {
-											echo "</tr><tr>";
+											echo "</div><div>";
 										}
 									}
 									if ( $show_final ) {
-										echo "<td id='mtq_list_item-end-$mtqid' class='mtq_list_item' onclick='mtq_nav_click($i,$mtqid)'>".__('End', 'mtouchquiz')."</td>";
+										echo "<div id='mtq_list_item-end-$mtqid' class='mtq_list_item' onclick='mtq_nav_click($i,$mtqid)'>".__('End', 'mtouchquiz')."</div>";
 									}
-									
-								
+
+
 								?>
-      </tr>
-    </table>
-    <div id='mtq_return_list_b-<?php echo $mtqid ?>' class="mtq_return_list mtq_css_button mtq_return_button" onclick='mtq_nav_click(0,<?php echo $mtqid ?>)'> <div class="mtq_return_text">
+      </div>
+    </div>
+
+
+	<div id='mtq_return_list_b-<?php echo $mtqid ?>' class="mtq_return_list mtq_css_button mtq_return_button" onclick='mtq_nav_click(0,<?php echo $mtqid ?>)'>
+	<div class="mtq_return_text">
     <?php _e('Return', 'mtouchquiz');?>
-    </div> </div></div>
+	</div>
+</div></div>
   <?php } ?>
   <div id="mtq_variables" class="mtq_preload" style="display:none"> <?php echo $mtq_all_vars; ?> <div id="mtq_have_completed_string" class="mtq_preload">
     <?php _e('You have completed', 'mtouchquiz') ?>
@@ -632,7 +651,7 @@ if ($show_final ) {?>
     <input type="hidden" id="mtq_display_number-<?php echo $mtqid ?>" value="<?php echo  $display_number; ?>" />
     <input type="hidden" id="mtq_show_list_option-<?php echo $mtqid ?>" value="<?php echo  $show_list; ?>" />
     <input type="hidden" id="mtq_show_stamps-<?php echo $mtqid ?>" value="<?php echo  $show_stamps; ?>" />
-    <?php 
+    <?php
 								$all_ratings = $wpdb->get_results($wpdb->prepare("SELECT score_rating, min_points FROM {$wpdb->prefix}mtouchquiz_ratings WHERE quiz_id=%d ORDER BY min_points", $quiz_id));
 								$mtq_num_ratings=count($all_ratings);
 								if ($mtq_num_ratings == 0)
@@ -667,13 +686,13 @@ if ($show_final ) {?>
 									echo "<input type='hidden' id='mtq_ratingval-1-$mtqid' value='-1'/>";
                             		echo "<div id='mtq_rating-1-$mtqid' class='mtq_preload'>".__('All done', 'mtouchquiz')."</div>";
 									$counter = 2;
-									foreach ($all_ratings as $quiz_rating) 
+									foreach ($all_ratings as $quiz_rating)
 									{
 										echo "<input type='hidden' id='mtq_ratingval-$counter-$mtqid' value='$quiz_rating->min_points'/>";
                             			echo "<div id='mtq_rating-$counter-$mtqid' class='mtq_preload'>".trim(stripslashes($quiz_rating->score_rating))."</div>";
 										$counter++;
 									}
-									
+
 								}
 							?>
     <input type="hidden" id="mtq_gf_present-<?php echo $mtqid ?>" value="<?php echo $mtq_use_gf ?>"/>
@@ -682,9 +701,12 @@ if ($show_final ) {?>
     <input type="hidden" id="mtq_gf_formid_number-<?php echo $mtqid ?>" value="<?php echo $gf_formid_number  ?>"/>
 
   </div>
-  
-  <!--Variables Div--> 
-  <!--/form--> 
+
+
+
+
+  <!--Variables Div-->
+  <!--/form-->
 </div>
 <!--Quiz area div-->
 
