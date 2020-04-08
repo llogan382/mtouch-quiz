@@ -354,6 +354,10 @@
   <!-- Shortcode interpreted <?php echo $theexecutedcode;?> -->
   <!--form action="" method="post" class="quiz-form" id="quiz-<?php echo $quiz_id?>"-->
   <?php $mtq_all_vars.="<input type='hidden' id='mtq_id-{$mtqid}' name='mtq_id_value' value='{$mtqid}' />"; ?>
+
+
+
+
   <div id="mtq_quiztitle-<?php echo $mtqid ?>" class="mtq_quiztitle" <?php if ( ! $show_title ) { echo "style='display:none'"; } ?>>
   <h2><?php echo stripslashes($quiz_options->name)?></h2>
   </div>
@@ -394,12 +398,12 @@ if ($show_final ) {?>
 
 
 
-  <div class="lwd-quiz order-1" id="mtq_question_container-<?php echo $mtqid ?>" <?php if ( $show_start ) { echo "style='display:none'"; } ?>>
-  <div <?php if (!$single_page) { echo "class='mtqscrollable' id='mtq_scroll_container-{$mtqid}'";}?>>
+  <div class="lwd-quiz d-flex flex-column order-1" id="mtq_question_container-<?php echo $mtqid ?>" <?php if ( $show_start ) { echo "style='display:none'"; } ?>>
+  <div <?php if (!$single_page) { echo "class='mtqscrollable order-1' id='mtq_scroll_container-{$mtqid}'";}?>>
     <?php if (!$single_page) {?>
     <!-- root element for the items -->
 
-    <div id="mtq_scroll_items_container-<?php echo $mtqid ?>" class="items">
+    <div id="mtq_scroll_items_container-<?php echo $mtqid ?>" class="order-1 items">
       <?php }?>
       <?php
 
@@ -519,7 +523,7 @@ if ($show_final ) {?>
   <!--End of mtqscrollable-->
   <!--mtq_status-->
   <?php if ($show_status) { ?>
-  <div id="mtq_quiz_status-<?php echo $mtqid ?>" class="mtq_quiz_status">
+  <div id="mtq_quiz_status-<?php echo $mtqid ?>" class="order-0 mtq_quiz_status">
   <?php if ($question_count == 1 ){ _e('There is 1 question to complete.', 'mtouchquiz');} else { printf(__("There are %d questions to complete.", 'mtouchquiz'), $question_count); } ?>
   </div>
   <?php } ?>

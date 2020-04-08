@@ -16,6 +16,7 @@
 	font-family: Arial, Helvetica, sans-serif;
 }
 .mtqscrollable {
+	display: block;
 	position: relative;
 	overflow: hidden;
 }
