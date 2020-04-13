@@ -76,7 +76,7 @@
 	color: #FFF;
 }
 .mtq_list_item-wrong, .mtq_list_item.mtq_list_item_complete.mtq_list_item-wrong {
-	background:#B5281E!important;
+	background:#FEEFEF!important;
 	color: #FFF
 }
 .mtq_list_item-correct, .mtq_list_item.mtq_list_item_complete.mtq_list_item-correct {
@@ -116,7 +116,7 @@
 	width: 90%;
 }
 .mtq_question_list_container tr td {
-	border: thin solid !important;
+	/* border: thin solid !important; */
 	border-collapse: collapse;
 }
 .mtq_shaded_item_msg {
@@ -363,10 +363,10 @@
 	cursor: pointer;
 	font-weight: 600;
 	font-size: 125%;
-	color: #B5281E;
+	color: #FEEFEF;
 	background: #fff;
 	border: thin solid;
-	border-color: #B5281E;
+	border-color: #FEEFEF;
 	text-align: center;
 	width: 75%;
 	margin-left: auto;
@@ -376,7 +376,7 @@
 	-moz-border-radius: 2em;
 	-webkit-border-radius: 2em;
 	border-radius: 2em;
-	border-color: #B5281E;
+	border-color: #FEEFEF;
 	padding: .5em;
 }
 .mtq_clickable {
@@ -390,8 +390,8 @@
 }
 .mtq_wrong_stamp {
 	color: #FFF;
-	background: #B5281E;
-	border-color: #B5281E;
+	background: #FEEFEF;
+	border-color: #FEEFEF;
 }
 .mtq_correct_stamp {
 	color: #FFF;

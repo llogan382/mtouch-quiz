@@ -539,6 +539,8 @@ if ($show_final ) {?>
         <?php } ?>
 
 
+
+
         <?php if (!$single_page && ($question_count > 1 || $show_final)) { ?>
         <table id="mtq_listrow-<?php echo $mtqid ?>" class="col mtq_listrow">
             <tr>
@@ -592,18 +594,35 @@ if ($show_final ) {?>
         <div id="mtq_shaded_item_msg-<?php echo $mtqid ?>" class="mtq_shaded_item_msg">
             <?php _e('Shaded items are complete.','mtouchquiz');?>
         </div>
-        <table id="mtq_question_list_container-<?php echo $mtqid ?>" class="mtq_question_list_container">
-            <tr>
-                <?php
-
+		<table id="mtq_question_list_container-<?php echo $mtqid ?>" class="mtq_question_list_container table table-borderless">
+		<thead>
+			                <?php
 									for ($i=1; $i<=$question_count; $i++) {
-										echo "<td id='mtq_list_item-$i-$mtqid' class='mtq_list_item' onclick='mtq_nav_click($i,$mtqid)'>$i</td>";
+										echo "<th scope='col'></th>";
+										if ( ($i % 5) == 0 && $i > 1) {
+											echo "</th><th>";
+										}
+									}
+									if ( $show_final ) {
+										echo "<th scope='col'></th>";
+									}
+
+
+								?>
+		</thead>
+            <tr>
+				<?php
+									for ($i=1; $i<=$question_count; $i++) {
+										echo "
+										<td id='mtq_list_item-$i-$mtqid' class='mtq_list_item' onclick='mtq_nav_click($i,$mtqid)'>$i</td>";
 										if ( ($i % 5) == 0 && $i > 1) {
 											echo "</tr><tr>";
 										}
 									}
 									if ( $show_final ) {
-										echo "<td id='mtq_list_item-end-$mtqid' class='mtq_list_item' onclick='mtq_nav_click($i,$mtqid)'>".__('End', 'mtouchquiz')."</td>";
+										echo "
+
+										<td id='mtq_list_item-end-$mtqid' class='mtq_list_item' onclick='mtq_nav_click($i,$mtqid)'>".__('End', 'mtouchquiz')."</td>";
 									}
 
 
