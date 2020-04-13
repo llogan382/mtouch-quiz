@@ -1086,10 +1086,3 @@ function mtq_score_blindly(mtqid) { // This assumes that there was only one atte
 jQuery(document).ready(mtq_init);
 
 
-var lwd_quiz_nav = document.querySelector('.mtq_navigator');
-var lwd_quiz_content = document.querySelector('.lwd-question-container');
-
-var parent_node = document.querySelector('.mtq_quiz_area');
-
-parent_node.insertBefore(lwd_quiz_nav, lwd_quiz_content);
-
