@@ -529,7 +529,7 @@ if ($show_final ) {?>
         <!--mtq_status open footer container-->
         <?php if ($show_status) { ?>
         <div class="container">
-		<div class="row">
+		<div class="row lwd-footer">
 
 
 
@@ -544,23 +544,31 @@ if ($show_final ) {?>
             <tr>
                 <td class="mtq_listrow_button-td">
                     <div id="mtq_back_button-<?php echo $mtqid ?>"
-                        class='prev browse left mtq_css_back_button mtq_listrow_button'
+                        class='prev browse left mtq_list_button'
                         alt="<?php _e("Go to Previous Question",'mtouchquiz'); ?>"
-                        onclick="mtq_back_nav(<?php echo $mtqid ?>)">&#8592;</div>
+						onclick="mtq_back_nav(<?php echo $mtqid ?>)">&#8592;
+						<div class="mtq_list_text">
+                            <?php _e("Prev", 'mtouchquiz');?>
+                        </div>
+					</div>
                 </td>
                 <td><?php if ($show_list) {?>
-                    <div id="mtq_show_list-<?php echo $mtqid ?>" class="mtq_show_list mtq_css_button mtq_list_button"
+                    <div id="mtq_show_list-<?php echo $mtqid ?>" class="mtq_show_list mtq_list_button"
                         onclick="mtq_show_nav(<?php echo $mtqid ?>)" rel="mtq_navigator-<?php echo $mtqid ?>">
                         <div class="mtq_list_text">
                             <?php _e("Restart", 'mtouchquiz');?>
                         </div>
                     </div>
                     <?php }?></td>
-                <td class="mtq_listrow_button-td">
+                <td>
                     <div id="mtq_next_button-<?php echo $mtqid ?>"
-                        class='next browse right mtq_css_next_button mtq_listrow_button'
+                        class='next browse right mtq_list_button'
                         alt='<?php _e("Go to Next Question",'mtouchquiz');?>'
-                        onclick="mtq_next_nav(<?php echo $mtqid ?>)">&#8594;</div>
+						onclick="mtq_next_nav(<?php echo $mtqid ?>)">&#8594;
+						<div class="mtq_list_text">
+                            <?php _e("Next", 'mtouchquiz');?>
+                        </div>
+					</div>
                 </td>
             </tr>
         </table>

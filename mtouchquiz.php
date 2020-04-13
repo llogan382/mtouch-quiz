@@ -645,14 +645,21 @@ function mtq_enqueue_stuff() {
 
 		wp_enqueue_script('mtq_script', WP_CONTENT_URL . '/plugins/mtouch-quiz/script.js',array('jquery'),mtq_VERSION,false);
 
+
+
 	//if (! get_option('mtouchquiz_skiploadjquerytools'))  {
 		//wp_enqueue_script('mtq_scrollable', WP_CONTENT_URL . '/plugins/mtouch-quiz/scrollable.js',array('jquery'),mtq_VERSION,false);
 	//}
 	//wp_enqueue_script('jquerytools_full','http://cdn.jquerytools.org/1.2.5/full/jquery.tools.min.js','1.2.5',false);
 	wp_dequeue_script('mtq_gf_script'); //Replaced Functions
+
+
 }
 
 add_filter('plugin_row_meta', 'mtq_filter_plugin_links', 10, 2);
+
+
+
 
 // Add FAQ and contact information
 function mtq_filter_plugin_links($links, $file)
@@ -781,4 +788,12 @@ function mtq_color_options()
 }
 
 
+function enqueue_lwd(){
+	wp_enqueue_script('lwd_script', WP_CONTENT_URL . '/plugins/mtouch-quiz/custom-script.js', array('mtq_script'), false, false );
 
+    // $wp_scripts->enqueue( 'lwd_script' );
+}
+add_action('init', 'enqueue_lwd');
+
+
+// wp_enqueue_script('mtq_script', WP_CONTENT_URL . '/plugins/mtouch-quiz/script.js',array('jquery'),mtq_VERSION,false);
