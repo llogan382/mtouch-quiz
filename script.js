@@ -803,13 +803,13 @@ function mtq_update_status(mtqid) {
 	}
 
 
-	var status_msg = mtq_have_completed_string + " " + mtq_questions_answered[mtqid] + "/" + mtq_total_questions[mtqid] + " " + mtq_questions_string + ".";
+	var status_msg = "";
 	if (mtq_total_questions[mtqid] == 1) {
-		status_msg = mtq_have_completed_string + " " + mtq_questions_answered[mtqid] + "/" + mtq_total_questions[mtqid] + " " + mtq_question_string + ".";
+		status_msg = [mtqid] + "/" + mtq_total_questions[mtqid] + " " + mtq_question_string + ".";
 	}
 
 	if (mtq_answer_display[mtqid] == 2) {
-		status_msg += "<br>" + mtq_your_score_is_string + " " + mtq_score_percent[mtqid].toFixed(0) + "%.";
+		status_msg += "<br>" + mtq_your_score_is_string + " " + mtq_score_percent[mtqid].toFixed(0) + "/100% <br> Score";
 	}
 
 	if (mtq_questions_answered[mtqid] == mtq_total_questions[mtqid] && !mtq_show_final[mtqid]) {

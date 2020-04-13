@@ -540,7 +540,7 @@ if ($show_final ) {?>
 
 
         <?php if (!$single_page && ($question_count > 1 || $show_final)) { ?>
-        <table id="mtq_listrow-<?php echo $mtqid ?>" class="mtq_listrow">
+        <table id="mtq_listrow-<?php echo $mtqid ?>" class="col mtq_listrow">
             <tr>
                 <td class="mtq_listrow_button-td">
                     <div id="mtq_back_button-<?php echo $mtqid ?>"
@@ -552,7 +552,7 @@ if ($show_final ) {?>
                     <div id="mtq_show_list-<?php echo $mtqid ?>" class="mtq_show_list mtq_css_button mtq_list_button"
                         onclick="mtq_show_nav(<?php echo $mtqid ?>)" rel="mtq_navigator-<?php echo $mtqid ?>">
                         <div class="mtq_list_text">
-                            <?php _e("List", 'mtouchquiz');?>
+                            <?php _e("Restart", 'mtouchquiz');?>
                         </div>
                     </div>
                     <?php }?></td>
@@ -610,18 +610,13 @@ if ($show_final ) {?>
         </div>
     </div>
     <?php } ?>
-    <div id="mtq_variables" class="mtq_preload" style="display:none"> <?php echo $mtq_all_vars; ?> <div
-            id="mtq_have_completed_string" class="mtq_preload">
-            <?php _e('You have completed', 'mtouchquiz') ?>
-        </div>
-        <div id="mtq_questions_string" class="mtq_preload">
-            <?php _e('questions', 'mtouchquiz') ?>
-        </div>
+    <div id="mtq_variables" class="mtq_preload" style="display:none"> <?php echo $mtq_all_vars; ?>
+
         <div id="mtq_question_string" class="mtq_preload">
             <?php _e('question', 'mtouchquiz') ?>
         </div>
         <div id="mtq_your_score_is_string" class="mtq_preload">
-            <?php _e('Your score is', 'mtouchquiz')?>
+            <?php _e('', 'mtouchquiz')?>
         </div>
         <div id="mtq_correct_string" class="mtq_preload">
             <?php _e('Correct', 'mtouchquiz')?>
