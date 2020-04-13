@@ -19,7 +19,7 @@
 	position: relative;
 	overflow: hidden;
 }
-.mtqscrollable .items { 
+.mtqscrollable .items {
 	/* this cannot be too large */
 	width: 20000em;
 	position: absolute;
@@ -409,4 +409,9 @@
 }
 .mtq_css_letter_selected:hover {
 	background: #666 !important;
+}
+
+.lwd-footer{
+	background: #343947;
+	color: white;
 }
