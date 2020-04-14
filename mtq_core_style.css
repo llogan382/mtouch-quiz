@@ -77,11 +77,11 @@
 }
 .mtq_list_item-wrong, .mtq_list_item.mtq_list_item_complete.mtq_list_item-wrong {
 	background:#FEEFEF!important;
-	color: #FFF
+	color: #F06363
 }
 .mtq_list_item-correct, .mtq_list_item.mtq_list_item_complete.mtq_list_item-correct {
-	background: #063!important;
-	color: #FFF;
+	background: #E0F9F7!important;
+	color: #2CCEC0;
 }
 .mtq_list_item-partial,.mtq_list_item.mtq_list_item_complete.mtq_list_item-partial {
 	background: #09F!important;
