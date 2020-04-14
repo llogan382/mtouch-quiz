@@ -384,19 +384,19 @@
 }
 /* Non themed, but colored Items */
 .mtq_explanation {
-	background: #ADE0C1;
-	color: #030;
+	background: #E0F9F7;
+	color: #2CCEC0;
 	border-color: #030;
 }
 .mtq_wrong_stamp {
-	color: #FFF;
+	color: #F06363;
 	background: #FEEFEF;
-	border-color: #FEEFEF;
+	border-color: #FFF;
 }
 .mtq_correct_stamp {
-	color: #FFF;
-	background: #063;
-	border-color: #063;
+	color: #2CCEC0;
+	background: #ADE0C1;
+	border-color: #ADE0C1;
 }
 
 .mtq_selected_row {
