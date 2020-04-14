@@ -414,18 +414,24 @@ if ($show_final ) {?>
 							$question_count = 1;
 								foreach ($all_question as $ques) {
 									echo   "<div class='mtq_question mtq_scroll_item-$mtqid' id='mtq_question-$question_count-$mtqid'>";
-											echo   "<table class='mtq_question_heading_table'><tr><td>";
+											echo   "<table class='table mtq_question_heading_table lwd-table-heading table'>
+											<tr>
+											<td>";
 												if ( $show_labels ) {
-												echo   "<div class='mtq_question_label '>";
+												echo   "<div class='mtq_question_label'>";
 													ob_start();
 															printf(__('%d', 'mtouchquiz'), $question_count);
 													$q_label = ob_get_contents();
 													ob_end_clean();
 													echo $q_label;
-												echo   "</div>";
+												echo   "</div></td>";
 												}
-												echo   "<div id='mtq_stamp-$question_count-$mtqid' class='mtq_stamp'></div>";
-												echo   "</td></tr></table>";
+												echo   "<td><div id='mtq_stamp-$question_count-$mtqid' class='mtq_stamp'></div>";
+												echo   "</td>
+
+
+
+												</tr></table>";
 												echo "<div id='mtq_question_text-$question_count-$mtqid' class='mtq_question_text'>";
 											echo   stripslashes($ques->question) ;
 											echo "</div>";

@@ -415,3 +415,10 @@
 	background: #343947;
 	color: white;
 }
+
+
+
+ .lwd-table-heading {
+	text-align: right;
+	width: 100% !important;
+ }
