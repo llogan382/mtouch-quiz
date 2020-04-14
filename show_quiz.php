@@ -354,10 +354,7 @@
     <!-- Shortcode interpreted <?php echo $theexecutedcode;?> -->
     <!--form action="" method="post" class="quiz-form" id="quiz-<?php echo $quiz_id?>"-->
     <?php $mtq_all_vars.="<input type='hidden' id='mtq_id-{$mtqid}' name='mtq_id_value' value='{$mtqid}' />"; ?>
-    <div id="mtq_quiztitle-<?php echo $mtqid ?>" class="mtq_quiztitle"
-        <?php if ( ! $show_title ) { echo "style='display:none'"; } ?>>
-        <h2><?php echo stripslashes($quiz_options->name)?></h2>
-    </div>
+
     <?php if ($mtq_use_timer) {?>
     <div id="mtq_timer_row-<?php echo $mtqid ?>">
         <div id="mtq_timer_box-<?php echo $mtqid ?>" class="mtq_timer"></div>
@@ -421,7 +418,7 @@ if ($show_final ) {?>
 												if ( $show_labels ) {
 												echo   "<div class='mtq_question_label '>";
 													ob_start();
-															printf(__('Question %d', 'mtouchquiz'), $question_count);
+															printf(__('%d', 'mtouchquiz'), $question_count);
 													$q_label = ob_get_contents();
 													ob_end_clean();
 													echo $q_label;
@@ -583,15 +580,6 @@ if ($show_final ) {?>
     <!--Holds all questions-->
     <?php if ( $show_list ) {?>
     <div id="mtq_navigator-<?php echo $mtqid ?>" class="mtq_navigator">
-        <div id='mtq_return_list_t-<?php echo $mtqid ?>' class="mtq_return_list mtq_css_button mtq_return_button"
-            onclick='mtq_nav_click(0,<?php echo $mtqid ?>)'>
-            <div class="mtq_return_text">
-                <?php _e('Return', 'mtouchquiz');?>
-            </div>
-        </div>
-        <div id="mtq_shaded_item_msg-<?php echo $mtqid ?>" class="mtq_shaded_item_msg">
-            <?php _e('Shaded items are complete.','mtouchquiz');?>
-        </div>
         <table id="mtq_question_list_container-<?php echo $mtqid ?>"
             class="mtq_question_list_container table table-borderless">
             <thead>
@@ -628,12 +616,7 @@ if ($show_final ) {?>
 								?>
             </tr>
         </table>
-        <div id='mtq_return_list_b-<?php echo $mtqid ?>' class="mtq_return_list mtq_css_button mtq_return_button"
-            onclick='mtq_nav_click(0,<?php echo $mtqid ?>)'>
-            <div class="mtq_return_text">
-                <?php _e('Return', 'mtouchquiz');?>
-            </div>
-        </div>
+
     </div>
     <?php } ?>
     <div id="mtq_variables" class="mtq_preload" style="display:none"> <?php echo $mtq_all_vars; ?>
