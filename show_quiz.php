@@ -537,7 +537,7 @@ if ($show_final ) {?>
 
 
                 <div id="mtq_quiz_status-<?php echo $mtqid ?>" class="col mtq_quiz_status">
-                    <?php if ($question_count == 1 ){ _e('There is 1 question to complete.', 'mtouchquiz');} else { printf(__("There are %d questions to complete.", 'mtouchquiz'), $question_count); } ?>
+                    <?php if ($question_count == 1 ){ _e('There is 1 question to complete.', 'mtouchquiz');} else { printf(__("%d questions left", 'mtouchquiz'), $question_count); } ?>
                 </div>
                 <?php } ?>
 
@@ -545,36 +545,42 @@ if ($show_final ) {?>
 
 
                 <?php if (!$single_page && ($question_count > 1 || $show_final)) { ?>
-                <table id="mtq_listrow-<?php echo $mtqid ?>" class="col mtq_listrow">
-                    <tr>
-                        <td class="mtq_listrow_button-td">
-                            <div id="mtq_back_button-<?php echo $mtqid ?>" class='prev browse left mtq_list_button'
-                                alt="<?php _e("Go to Previous Question",'mtouchquiz'); ?>"
-                                onclick="mtq_back_nav(<?php echo $mtqid ?>)">&#8592;
-                                <div class="mtq_list_text">
-                                    <?php _e("Prev", 'mtouchquiz');?>
-                                </div>
-                            </div>
-                        </td>
-                        <td><?php if ($show_list) {?>
-                            <div id="mtq_show_list-<?php echo $mtqid ?>" class="mtq_show_list mtq_list_button"
-                                onclick="mtq_show_nav(<?php echo $mtqid ?>)" rel="mtq_navigator-<?php echo $mtqid ?>">
-                                <div class="mtq_list_text">
-                                    <?php _e("Restart", 'mtouchquiz');?>
-                                </div>
-                            </div>
-                            <?php }?></td>
-                        <td>
-                            <div id="mtq_next_button-<?php echo $mtqid ?>" class='next browse right mtq_list_button'
-                                alt='<?php _e("Go to Next Question",'mtouchquiz');?>'
-                                onclick="mtq_next_nav(<?php echo $mtqid ?>)">&#8594;
-                                <div class="mtq_list_text">
-                                    <?php _e("Next", 'mtouchquiz');?>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
+
+
+                <div class="mtq_listrow_button-td col">
+                    <div id="mtq_back_button-<?php echo $mtqid ?>" class='prev browse left mtq_list_button'
+                        alt="<?php _e("Go to Previous Question",'mtouchquiz'); ?>"
+                        onclick="mtq_back_nav(<?php echo $mtqid ?>)">&#8592;
+                        <div class="mtq_list_text">
+                            <?php _e("Prev", 'mtouchquiz');?>
+                        </div>
+                    </div>
+                </div>
+                <div class="col"><?php if ($show_list) {?>
+                    <div id="mtq_show_list-<?php echo $mtqid ?>" class="mtq_show_list mtq_list_button"
+                        onclick="mtq_show_nav(<?php echo $mtqid ?>)" rel="mtq_navigator-<?php echo $mtqid ?>">
+                        <div class="mtq_list_text">
+                            <?php _e("Restart", 'mtouchquiz');?>
+                        </div>
+                    </div>
+                    <?php }?></div>
+                <div class="col">
+                    <div id="mtq_next_button-<?php echo $mtqid ?>" class='next browse right mtq_list_button'
+                        alt='<?php _e("Go to Next Question",'mtouchquiz');?>'
+                        onclick="mtq_next_nav(<?php echo $mtqid ?>)">&#8594;
+                        <div class="mtq_list_text">
+                            <?php _e("Next", 'mtouchquiz');?>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
                 <?php } ?>
                 <!-- close row -->
             </div>
@@ -586,8 +592,7 @@ if ($show_final ) {?>
     <!--Holds all questions-->
     <?php if ( $show_list ) {?>
     <div id="mtq_navigator-<?php echo $mtqid ?>" class="mtq_navigator">
-        <div id="mtq_question_list_container-<?php echo $mtqid ?>"
-            class="mtq_question_list_container container h-50">
+        <div id="mtq_question_list_container-<?php echo $mtqid ?>" class="mtq_question_list_container container h-50">
             <div class="row align-items-center flex-nowrap p-5">
                 <?php
 									for ($i=1; $i<=$question_count; $i++) {
@@ -606,7 +611,7 @@ if ($show_final ) {?>
 
 								?>
             </div>
-								</div>
+        </div>
 
     </div>
     <?php } ?>
