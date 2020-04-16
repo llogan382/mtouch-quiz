@@ -586,42 +586,27 @@ if ($show_final ) {?>
     <!--Holds all questions-->
     <?php if ( $show_list ) {?>
     <div id="mtq_navigator-<?php echo $mtqid ?>" class="mtq_navigator">
-        <table id="mtq_question_list_container-<?php echo $mtqid ?>"
-            class="mtq_question_list_container table table-borderless">
-            <thead>
-                <?php
-									for ($i=1; $i<=$question_count; $i++) {
-										echo "<th scope='col'></th>";
-										if ( ($i % 5) == 0 && $i > 1) {
-											echo "</th><th>";
-										}
-									}
-									if ( $show_final ) {
-										echo "<th scope='col'></th>";
-									}
-
-
-								?>
-            </thead>
-            <tr>
+        <div id="mtq_question_list_container-<?php echo $mtqid ?>"
+            class="mtq_question_list_container">
+            <div>
                 <?php
 									for ($i=1; $i<=$question_count; $i++) {
 										echo "
-										<td id='mtq_list_item-$i-$mtqid' class='mtq_list_item' onclick='mtq_nav_click($i,$mtqid)'>$i</td>";
+										<div id='mtq_list_item-$i-$mtqid' class='mtq_list_item' onclick='mtq_nav_click($i,$mtqid)'>$i</div>";
 										if ( ($i % 5) == 0 && $i > 1) {
-											echo "</tr><tr>";
+											echo "</div><div>";
 										}
 									}
 									if ( $show_final ) {
 										echo "
 
-										<td id='mtq_list_item-end-$mtqid' class='mtq_list_item' onclick='mtq_nav_click($i,$mtqid)'>".__('End', 'mtouchquiz')."</td>";
+										<div id='mtq_list_item-end-$mtqid' class='mtq_list_item' onclick='mtq_nav_click($i,$mtqid)'>".__('End', 'mtouchquiz')."</div>";
 									}
 
 
 								?>
-            </tr>
-        </table>
+            </div>
+								</div>
 
     </div>
     <?php } ?>
