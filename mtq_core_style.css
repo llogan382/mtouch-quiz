@@ -64,9 +64,11 @@
 }
 .mtq_list_item {
 	cursor: pointer;
-	padding-bottom: 1em !important;
-	padding-top: 1em !important;
+	/* padding-bottom: 1em !important;
+	padding-top: 1em !important; */
 	font-size: 200%;
+	background: #F7F8FC;
+border-radius: 15px;
 }
 .mtq_show_list {
 /*width:3.5em;*/
@@ -74,14 +76,15 @@
 .mtq_list_item_complete {
 	font-weight: 400;
 	color: #FFF;
+
 }
 .mtq_list_item-wrong, .mtq_list_item.mtq_list_item_complete.mtq_list_item-wrong {
-	background:#B5281E!important;
-	color: #FFF
+	background:#FEEFEF!important;
+	color: #F06363
 }
 .mtq_list_item-correct, .mtq_list_item.mtq_list_item_complete.mtq_list_item-correct {
-	background: #063!important;
-	color: #FFF;
+	background: #E0F9F7!important;
+	color: #2CCEC0;
 }
 .mtq_list_item-partial,.mtq_list_item.mtq_list_item_complete.mtq_list_item-partial {
 	background: #09F!important;
@@ -103,22 +106,16 @@
 	margin-right: auto;
 	border-collapse: collapse;
 	left: 0;
+	background: #FFFFFF;
+box-shadow: 0px 6px 16px rgba(10, 22, 71, 0.1);
+border-radius: 15px;
 }
-.mtq_question_list_container td {
-	text-align: center;
-	width: 20%;
-}
-.mtq_question_list_container tr {
-	padding-top: 2em;
-}
+
 .mtq_question_text {
 	padding-right: 2em;
 	width: 90%;
 }
-.mtq_question_list_container tr td {
-	border: thin solid !important;
-	border-collapse: collapse;
-}
+
 .mtq_shaded_item_msg {
 	display: block;
 	width: 25em;
@@ -363,10 +360,10 @@
 	cursor: pointer;
 	font-weight: 600;
 	font-size: 125%;
-	color: #B5281E;
+	color: #FEEFEF;
 	background: #fff;
 	border: thin solid;
-	border-color: #B5281E;
+	border-color: #FEEFEF;
 	text-align: center;
 	width: 75%;
 	margin-left: auto;
@@ -376,7 +373,7 @@
 	-moz-border-radius: 2em;
 	-webkit-border-radius: 2em;
 	border-radius: 2em;
-	border-color: #B5281E;
+	border-color: #FEEFEF;
 	padding: .5em;
 }
 .mtq_clickable {
@@ -384,19 +381,19 @@
 }
 /* Non themed, but colored Items */
 .mtq_explanation {
-	background: #ADE0C1;
-	color: #030;
+	background: #E0F9F7;
+	color: #2CCEC0;
 	border-color: #030;
 }
 .mtq_wrong_stamp {
-	color: #FFF;
-	background: #B5281E;
-	border-color: #B5281E;
+	color: #F06363;
+	background: #FEEFEF;
+	border-color: #FFF;
 }
 .mtq_correct_stamp {
-	color: #FFF;
-	background: #063;
-	border-color: #063;
+	color: #2CCEC0;
+	background: #ADE0C1;
+	border-color: #ADE0C1;
 }
 
 .mtq_selected_row {
@@ -415,3 +412,8 @@
 	background: #343947;
 	color: white;
 }
+
+
+ .lwd-progress-row{
+
+ }

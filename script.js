@@ -400,14 +400,14 @@ function mtq_start_quiz(mtqid) {
 }
 
 function mtq_show_nav(mtqid) {
-	jQuery("#mtq_question_container-" + mtqid).css('display', 'none');
+	// jQuery("#mtq_question_container-" + mtqid).css('display', 'none');
 	//jQuery("#mtq_navigator-"+mtqid).slideDown();
 	jQuery("#mtq_navigator-" + mtqid).css('display', 'block');
 
 }
 
 function mtq_nav_click(q, mtqid) {
-	jQuery("#mtq_navigator-" + mtqid).css('display', 'none');
+	// jQuery("#mtq_navigator-" + mtqid).css('display', 'none');
 	//jQuery("#mtq_navigator-"+mtqid).slideUp();
 	jQuery("#mtq_question_container-" + mtqid).css('display', 'block');
 	//jQuery("#mtq_scroll_container-"+mtqid).data("mtqscrollable").mtq_seekTo(q-1,0);
@@ -1085,4 +1085,19 @@ function mtq_score_blindly(mtqid) { // This assumes that there was only one atte
 
 jQuery(document).ready(mtq_init);
 
+document.addEventListener("DOMContentLoaded", function (event) {
+	var question_count = document.querySelectorAll('.mtq_question').length;
+
+	var node = document.createElement("DIV");
+	var textNode = document.createTextNode("Hello");
+	node.appendChild(textNode);
+
+	let labels = document.querySelectorAll('.mtq_question_label');
+	for (var label of labels) {
+		label.innerHTML += `/${question_count}`
+	}
+
+	// scrollable.insertBefore(questionText, items);
+	// quizArea.appendChild(questionText);
+});
 
