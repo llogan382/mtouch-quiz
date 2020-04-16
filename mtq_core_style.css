@@ -64,9 +64,11 @@
 }
 .mtq_list_item {
 	cursor: pointer;
-	padding-bottom: 1em !important;
-	padding-top: 1em !important;
+	/* padding-bottom: 1em !important;
+	padding-top: 1em !important; */
 	font-size: 200%;
+	background: #F7F8FC;
+border-radius: 15px;
 }
 .mtq_show_list {
 /*width:3.5em;*/
@@ -74,6 +76,7 @@
 .mtq_list_item_complete {
 	font-weight: 400;
 	color: #FFF;
+
 }
 .mtq_list_item-wrong, .mtq_list_item.mtq_list_item_complete.mtq_list_item-wrong {
 	background:#FEEFEF!important;
@@ -103,22 +106,16 @@
 	margin-right: auto;
 	border-collapse: collapse;
 	left: 0;
+	background: #FFFFFF;
+box-shadow: 0px 6px 16px rgba(10, 22, 71, 0.1);
+border-radius: 15px;
 }
-.mtq_question_list_container td {
-	text-align: center;
-	width: 20%;
-}
-.mtq_question_list_container tr {
-	padding-top: 2em;
-}
+
 .mtq_question_text {
 	padding-right: 2em;
 	width: 90%;
 }
-.mtq_question_list_container tr td {
-	/* border: thin solid !important; */
-	border-collapse: collapse;
-}
+
 .mtq_shaded_item_msg {
 	display: block;
 	width: 25em;
@@ -417,8 +414,6 @@
 }
 
 
+ .lwd-progress-row{
 
- .lwd-table-heading {
-	text-align: right;
-	width: 100% !important;
  }
