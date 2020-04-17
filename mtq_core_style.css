@@ -179,12 +179,9 @@ border-radius: 15px;
 	padding: 0 0 .1em !important;
 }
 .mtq_answer_table {
-	width: 85% !important;
-	padding-right: 1em;
-	margin-top: 1em;
-	text-align: left;
-	border-collapse: collapse;
-	cursor: auto;
+	/* width: 85% !important; */
+	display: grid;
+	grid-auto-columns: auto;
 }
 .mtq_answer_table td {
 	padding-top: .5em !important;

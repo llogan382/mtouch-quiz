@@ -441,7 +441,7 @@ if ($show_final ) {?>
 											$mtq_all_vars.=   "<input type='hidden' id='mtq_is_worth-{$question_count}-$mtqid' value='{$ques->point_value}'/>";
 											$mtq_all_vars.=   "<input type='hidden' id='mtq_num_attempts-{$question_count}-$mtqid' value='0'/>";
 											$mtq_all_vars.=   "<input type='hidden' id='mtq_points_awarded-{$question_count}-$mtqid' value='0'/>";
-											 echo   "<table class='mtq_answer_table'>";
+											 echo   "<div class='mtq_answer_table'>";
 												 echo   "<colgroup>";
 													 echo   "<col class='mtq_oce_first'/>";
 												 echo   "</colgroup>";
@@ -488,7 +488,7 @@ if ($show_final ) {?>
 													$answer_count++;
 												}
 												$answer_count--;
-											echo   "</table>";
+											echo   "</div>";
 
 											if ($ques->explanation) //Need to format this better
 											{
