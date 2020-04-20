@@ -293,15 +293,20 @@ border-radius: 15px;
 }
 .mtq_correct_marker {
 	display: block;
-	width: 40px;
-	height: 40px;
-	background: url(images/correct.png) no-repeat 0 0;
+	width: 10px;
+	height: 100%;
+	background-color: #2CCEC0;
+	border-top-left-radius: 8px;
+	border-bottom-left-radius: 8px;
+	/* background: url(images/correct.png) no-repeat 0 0; */
 }
 .mtq_wrong_marker {
 	display: block;
-	width: 40px;
-	height: 40px;
-	background: url(images/wrong.png) no-repeat 0 0;
+	width: 10px;
+	height: 100%;
+	background-color: #F06363;
+	border-top-left-radius: 8px;
+	border-bottom-left-radius: 8px;
 }
 .mtq_selected_row {
 	font-weight: 600;
