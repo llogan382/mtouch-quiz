@@ -182,6 +182,8 @@ border-radius: 15px;
 	/* width: 85% !important; */
 	display: grid;
 	grid-auto-columns: auto;
+	grid-gap: 20px;
+	padding: 20px;
 }
 .mtq_answer_table td {
 	padding-top: .5em !important;
@@ -375,6 +377,11 @@ border-radius: 15px;
 }
 .mtq_clickable {
 	cursor: pointer;
+	display: grid;
+	background-color: #fff;
+	grid-template-columns: 20px 1fr;
+	box-shadow: 0px 6px 16px rgba(10, 22, 71, 0.1);
+border-radius: 8px;
 }
 /* Non themed, but colored Items */
 .mtq_explanation {

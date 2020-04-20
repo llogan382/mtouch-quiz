@@ -455,10 +455,16 @@ if ($show_final ) {?>
 												$mtq_the_alphabet="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 												foreach ($dans as $ans) {
 													$image_number = ($answer_count-1) % 26;
-													echo   "<tr id='mtq_row-{$question_count}-{$answer_count}-$mtqid' onclick='mtq_button_click({$question_count},{$answer_count},$mtqid)' class='mtq_clickable'>";
-														echo   "<td class='mtq_letter_button_td'>";
-															echo   "<div id='mtq_button-{$question_count}-{$answer_count}-$mtqid' class='mtq_css_letter_button mtq_letter_button_{$image_number}'  alt='".$q_label .", Choice ".$answer_count."'>";
-														echo   substr($mtq_the_alphabet,$answer_count-1,1)."</div>";
+
+
+
+					// Start
+													echo   "<div id='mtq_row-{$question_count}-{$answer_count}-$mtqid' onclick='mtq_button_click({$question_count},{$answer_count},$mtqid)' class='mtq_clickable'>";
+														echo   "<div class='mtq_letter_button_td'>";
+															echo   "<div id='mtq_button-{$question_count}-{$answer_count}-$mtqid' class='mtq_letter_button_{$image_number}'  alt='".$q_label .", Choice ".$answer_count."'>";
+														echo
+														// substr($mtq_the_alphabet,$answer_count-1,1).
+														"</div>";
 														if ($ans->correct) {
 																echo   "<div id='mtq_marker-{$question_count}-{$answer_count}-$mtqid' class='mtq_marker mtq_correct_marker' alt='".__("Correct", 'mtouchquiz')."'></div>";
 																$num_correct++;
@@ -466,8 +472,8 @@ if ($show_final ) {?>
 																echo   "<div id='mtq_marker-{$question_count}-{$answer_count}-$mtqid' class='mtq_marker mtq_wrong_marker' alt='".__("Wrong", 'mtouchquiz')."'></div>";
 														}
 
-														echo   "</td>";
-														echo   "<td class='mtq_answer_td'>";
+														echo   "</div>";
+														echo   "<div class='mtq_answer_td'>";
 															echo   "<div id='mtq_answer_text-{$question_count}-{$answer_count}-$mtqid' class='mtq_answer_text'>".stripslashes($ans->answer)."</div>";
 															$is_correct_value = '0';
 															if($ans->correct) $is_correct_value = '1';
@@ -483,8 +489,13 @@ if ($show_final ) {?>
 																echo   "<div class='mtq_hint_text'>".stripslashes($ans->hint)."</div>";
 															echo   "</div>";
 															}
-														echo   "</td>";
-													echo   "</tr>";
+														echo   "</div>";
+													echo   "</div>";
+
+													// END
+
+
+
 													$answer_count++;
 												}
 												$answer_count--;
