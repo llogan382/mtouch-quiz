@@ -1085,19 +1085,19 @@ function mtq_score_blindly(mtqid) { // This assumes that there was only one atte
 
 jQuery(document).ready(mtq_init);
 
-// document.addEventListener("DOMContentLoaded", function (event) {
-// 	var question_count = document.querySelectorAll('.mtq_question').length;
+document.addEventListener("DOMContentLoaded", function (event) {
+	var question_count = document.querySelectorAll('.mtq_question').length;
 
-// 	var node = document.createElement("DIV");
-// 	var textNode = document.createTextNode("Hello");
-// 	node.appendChild(textNode);
+	var node = document.createElement("DIV");
+	var textNode = document.createTextNode("Hello");
+	node.appendChild(textNode);
 
-// 	let labels = document.querySelectorAll('.mtq_question_label');
-// 	for (var label of labels) {
-// 		label.innerHTML += `/${question_count}`
-// 	}
+	let labels = document.querySelectorAll('.mtq_question_label');
+	for (var label of labels) {
+		label.innerHTML += `/${question_count}`
+	}
 
-// 	// scrollable.insertBefore(questionText, items);
-// 	// quizArea.appendChild(questionText);
-// });
+	// scrollable.insertBefore(questionText, items);
+	// quizArea.appendChild(questionText);
+});
 
