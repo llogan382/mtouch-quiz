@@ -426,3 +426,8 @@ border-radius: 8px;
  .lwd-progress-row{
 
  }
+
+ .lwd-passed-img{
+	background: url(images/passed.png) no-repeat 0 0px;
+
+ }
