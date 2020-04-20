@@ -400,14 +400,14 @@ function mtq_start_quiz(mtqid) {
 }
 
 function mtq_show_nav(mtqid) {
-	jQuery("#mtq_question_container-" + mtqid).css('display', 'none');
+	// jQuery("#mtq_question_container-" + mtqid).css('display', 'none');
 	//jQuery("#mtq_navigator-"+mtqid).slideDown();
 	jQuery("#mtq_navigator-" + mtqid).css('display', 'block');
 
 }
 
 function mtq_nav_click(q, mtqid) {
-	jQuery("#mtq_navigator-" + mtqid).css('display', 'none');
+	// jQuery("#mtq_navigator-" + mtqid).css('display', 'none');
 	//jQuery("#mtq_navigator-"+mtqid).slideUp();
 	jQuery("#mtq_question_container-" + mtqid).css('display', 'block');
 	//jQuery("#mtq_scroll_container-"+mtqid).data("mtqscrollable").mtq_seekTo(q-1,0);
@@ -803,13 +803,13 @@ function mtq_update_status(mtqid) {
 	}
 
 
-	var status_msg = mtq_have_completed_string + " " + mtq_questions_answered[mtqid] + "/" + mtq_total_questions[mtqid] + " " + mtq_questions_string + ".";
+	var status_msg = "";
 	if (mtq_total_questions[mtqid] == 1) {
-		status_msg = mtq_have_completed_string + " " + mtq_questions_answered[mtqid] + "/" + mtq_total_questions[mtqid] + " " + mtq_question_string + ".";
+		status_msg = [mtqid] + "/" + mtq_total_questions[mtqid] + " " + mtq_question_string + ".";
 	}
 
 	if (mtq_answer_display[mtqid] == 2) {
-		status_msg += "<br>" + mtq_your_score_is_string + " " + mtq_score_percent[mtqid].toFixed(0) + "%.";
+		status_msg += "<br>" + mtq_your_score_is_string + " " + mtq_score_percent[mtqid].toFixed(0) + "/100% <br> Score";
 	}
 
 	if (mtq_questions_answered[mtqid] == mtq_total_questions[mtqid] && !mtq_show_final[mtqid]) {
@@ -1085,11 +1085,19 @@ function mtq_score_blindly(mtqid) { // This assumes that there was only one atte
 
 jQuery(document).ready(mtq_init);
 
+document.addEventListener("DOMContentLoaded", function (event) {
+	var question_count = document.querySelectorAll('.mtq_question').length;
 
-var lwd_quiz_nav = document.querySelector('.mtq_navigator');
-var lwd_quiz_content = document.querySelector('.lwd-question-container');
+	var node = document.createElement("DIV");
+	var textNode = document.createTextNode("Hello");
+	node.appendChild(textNode);
 
-var parent_node = document.querySelector('.mtq_quiz_area');
+	let labels = document.querySelectorAll('.mtq_question_label');
+	for (var label of labels) {
+		label.innerHTML += `/${question_count}`
+	}
 
-parent_node.insertBefore(lwd_quiz_nav, lwd_quiz_content);
+	// scrollable.insertBefore(questionText, items);
+	// quizArea.appendChild(questionText);
+});
 

@@ -14,7 +14,7 @@ Text Domain: mtouchquiz
 /*  Copyright 2013  G. Michael Guy  (email : Michael (Put-AN-AT) gmichaelguy.com)
 
     This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License, version 2, as 
+    it under the terms of the GNU General Public License, version 2, as
     published by the Free Software Foundation.
 
     This program is distributed in the hope that it will be useful,
@@ -31,7 +31,7 @@ Text Domain: mtouchquiz
 /**
  * Add a new menu page, visible for all users with template viewing level.
  */
- 
+
 define( 'mtq_VERSION', '3.1.3' );
 define( 'mtq_URL','http://gmichaelguy.com/quizplugin/');
 define( 'mtq_DISPLAY_NAME','mTouch Quiz');
@@ -43,7 +43,7 @@ function mtq_add_menu_links() {
 	$view_level= 'activate_plugins';
 	//$page = 'edit.php';
 	//if($wp_version >= '2.7') $page = 'tools.php';
-	
+
 	add_menu_page(__('mTouch Quiz', 'mtouchquiz'), __('mTouch Quiz', 'mtouchquiz'), $view_level, 'mtq_menu','mtq_plugin_options' , plugins_url('mtouch-quiz/images/menu-icon.png'));
 
 	add_submenu_page('mtq_menu', __('Manage mTouch Quizzes', 'mtouchquiz'), __('Manage Quizzes', 'mtouchquiz'), $view_level, 'mtouch-quiz/quiz.php');
@@ -63,7 +63,7 @@ function mtq_init() {
 	add_action('admin_menu', 'mtq_menu');
 	$installed_db = get_option('mtouchquiz_db_version');
 	if ( $installed_db != mtq_database_version ) {
-		mtq_activate();	
+		mtq_activate();
 	}
 }
 
@@ -93,7 +93,7 @@ require('wpframe.php');
 function mtq_menu() {
     add_options_page(__('mTouch Quiz Plugin Options', 'mtouchquiz'), __('mTouch Quiz Plugin', 'mtouchquiz'), 'activate_plugins', 'mtouchquiz', 'mtq_plugin_options');
   }
-  
+
  function mtq_plugin_options() {
       //if (!current_user_can('manage_options'))  {
       if (!current_user_can('activate_plugins'))  {
@@ -109,18 +109,18 @@ echo '<div class="wrap" id="mtouchquiz-options">
 			update_option('mtouchquiz_rightdelimit', $_REQUEST['right_delimiter']);
 			if(!empty($_POST['showalerts'])) {
 				update_option('mtouchquiz_showalerts', $_POST['showalerts']);
-			} else 
+			} else
 			{
 				update_option('mtouchquiz_showalerts', 0);
 			}
-			
+
 			if(!empty($_POST['show_support'])) {
 				update_option('mtouchquiz_show_support', "false");
-			} else 
+			} else
 			{
 				update_option('mtouchquiz_show_support', "true");
 			}
-			wpframe_message(__('Options updated', 'mtouchquiz'));   
+			wpframe_message(__('Options updated', 'mtouchquiz'));
 		}
     }
 ?>
@@ -176,11 +176,11 @@ echo mtq_donate_form(); ?>
 }
 
 function mtq_check_all_gf() {
-	return mtq_check_gf() && mtq_check_addon_gf();	
+	return mtq_check_gf() && mtq_check_addon_gf();
 }
 
 function mtq_check_gf() {
-	return  mtq_check_gf_active() &&  mtq_check_gf_exists();	
+	return  mtq_check_gf_active() &&  mtq_check_gf_exists();
 }
 
 function mtq_check_gf_active() {
@@ -189,14 +189,14 @@ function mtq_check_gf_active() {
 	   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 		   // Makes sure the plugin is defined before trying to use it
 	return is_plugin_active('gravityforms/gravityforms.php') || is_plugin_active_for_network( 'gravityforms/gravityforms.php');
-		
+
 }
 
 function mtq_check_gf_exists() {
 	if ( ! ( function_exists( 'is_plugin_active_for_network' ) && function_exists( 'is_plugin_active' )))
-	   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );	   
+	   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 		   // Makes sure the plugin is defined before trying to use it
-	return file_exists(ABSPATH . 'wp-content/plugins/gravityforms/gravityforms.php');		
+	return file_exists(ABSPATH . 'wp-content/plugins/gravityforms/gravityforms.php');
 }
 
 function mtq_check_addon_gf() {
@@ -205,25 +205,25 @@ function mtq_check_addon_gf() {
 
 function mtq_check_addon_gf_active() {
 	if ( ! ( function_exists( 'is_plugin_active_for_network' ) && function_exists( 'is_plugin_active' )))
-	   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );		   
+	   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 		   // Makes sure the plugin is defined before trying to use it
 	return is_plugin_active( 'mtouch-quiz-gf/mtouchquiz-gf.php') || is_plugin_active_for_network( 'mtouch-quiz-gf/mtouchquiz-gf.php');
 }
 
 function mtq_check_addon_gf_exists() {
 	if ( ! ( function_exists( 'is_plugin_active_for_network' ) && function_exists( 'is_plugin_active' )))
-	   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );	   
+	   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 		   // Makes sure the plugin is defined before trying to use it
-	return file_exists(ABSPATH . 'wp-content/plugins/mtouch-quiz-gf/mtouchquiz-gf.php');	
+	return file_exists(ABSPATH . 'wp-content/plugins/mtouch-quiz-gf/mtouchquiz-gf.php');
 }
 
 
 function mtq_check_all_cf7() {
-	return mtq_check_cf7() && mtq_check_addon_cf7();	
+	return mtq_check_cf7() && mtq_check_addon_cf7();
 }
 
 function mtq_check_cf7() {
-	return  mtq_check_cf7_active() &&  mtq_check_cf7_exists();	
+	return  mtq_check_cf7_active() &&  mtq_check_cf7_exists();
 }
 
 function mtq_check_cf7_active() {
@@ -232,14 +232,14 @@ function mtq_check_cf7_active() {
 	   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 		   // Makes sure the plugin is defined before trying to use it
 	return is_plugin_active('contact-form-7/wp-contact-form-7.php') || is_plugin_active_for_network( 'contact-form-7/wp-contact-form-7.php');
-		
+
 }
 
 function mtq_check_cf7_exists() {
 	if ( ! ( function_exists( 'is_plugin_active_for_network' ) && function_exists( 'is_plugin_active' )))
-	   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );	   
+	   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 		   // Makes sure the plugin is defined before trying to use it
-	return file_exists(ABSPATH . 'wp-content/plugins/contact-form-7/wp-contact-form-7.php');		
+	return file_exists(ABSPATH . 'wp-content/plugins/contact-form-7/wp-contact-form-7.php');
 }
 
 function mtq_check_addon_cf7() {
@@ -248,43 +248,43 @@ function mtq_check_addon_cf7() {
 
 function mtq_check_addon_cf7_active() {
 	if ( ! ( function_exists( 'is_plugin_active_for_network' ) && function_exists( 'is_plugin_active' )))
-	   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );		   
+	   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 		   // Makes sure the plugin is defined before trying to use it
 	return is_plugin_active( 'mtouch-quiz-cf7/mtouchquiz-cf7.php') || is_plugin_active_for_network( 'mtouch-quiz-cf7/mtouchquiz-cf7.php');
 }
 
 function mtq_check_addon_cf7_exists() {
 	if ( ! ( function_exists( 'is_plugin_active_for_network' ) && function_exists( 'is_plugin_active' )))
-	   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );	   
+	   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 		   // Makes sure the plugin is defined before trying to use it
-	return file_exists(ABSPATH . 'wp-content/plugins/mtouch-quiz-cf7/mtouchquiz-cf7.php');	
+	return file_exists(ABSPATH . 'wp-content/plugins/mtouch-quiz-cf7/mtouchquiz-cf7.php');
 }
 
 
 function mtq_check_addon_timer_active() {
 	if ( ! ( function_exists( 'is_plugin_active_for_network' ) && function_exists( 'is_plugin_active' )))
-	   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );		   
+	   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 		   // Makes sure the plugin is defined before trying to use it
 	return is_plugin_active( 'mtouch-quiz-timer/mtouchquiz-timer.php') || is_plugin_active_for_network( 'mtouch-quiz-timer/mtouchquiz-timerf.php');
 }
 
 function mtq_check_addon_timer_exists() {
 	if ( ! ( function_exists( 'is_plugin_active_for_network' ) && function_exists( 'is_plugin_active' )))
-	   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );	   
+	   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 		   // Makes sure the plugin is defined before trying to use it
-	return file_exists(ABSPATH . 'wp-content/plugins/mtouch-quiz-timer/mtouchquiz-timer.php');	
+	return file_exists(ABSPATH . 'wp-content/plugins/mtouch-quiz-timer/mtouchquiz-timer.php');
 }
 
 function mtq_check_theme_addon_exists() {
 	if ( ! ( function_exists( 'is_plugin_active_for_network' ) && function_exists( 'is_plugin_active' )))
-	   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );	   
+	   require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 		   // Makes sure the plugin is defined before trying to use it
-	return file_exists(ABSPATH . 'wp-content/plugins/mtouch-quiz-theme/mtouchquiz-theme.php');	
+	return file_exists(ABSPATH . 'wp-content/plugins/mtouch-quiz-theme/mtouchquiz-theme.php');
 }
 
 
 function mtq_check_all_timer() {
-	return mtq_check_addon_timer_active() && mtq_check_addon_timer_exists();	
+	return mtq_check_addon_timer_active() && mtq_check_addon_timer_exists();
 }
 
 function mtq_premium_list() {
@@ -294,9 +294,9 @@ function mtq_premium_list() {
     echo "<li> <a href='http://gmichaelguy.com/quizplugin/go/gf/' title='mTouch Quiz Gravity Forms Addon'>Gravity Forms Addon:</a> Add the ability to email quiz results (and keep a copy of the email in the dashboard. Not to mention make use of all the power of <a href='http://gmichaelguy.com/quizplugin/go/gravity/' title='Get Gravity Forms'>Gravity Forms</a>) </li>";
     echo "<li> <a href='http://gmichaelguy.com/quizplugin/go/cf7/' title='mTouch Quiz Contact Form 7 Addon'>Contact Form 7 Addon:</a> Add the ability to email quiz results (NO copy is kept in the dashboard, but it works with the free plugin <a href='http://contactform7.com/' title='Get Contact Form 7'>Contact Form 7</a>) </li>";
     echo "<li> <a href='http://gmichaelguy.com/quizplugin/go/timer/' title='mTouch Quiz Timer Addon'>Timer Addon:</a> Add a timer to your quiz. When time is up, the quiz is over! </li>";
-	 
-  echo"</ul>";	
-  
+
+  echo"</ul>";
+
   //return $return_text;
 }
 
@@ -373,67 +373,67 @@ function mtq_shortcode( $atts ) {
 	$scoring = 0;
 	$vform = 1;
 	$auto_submit = 0;
-	
+
 	$thetypedcode= "mtouchquiz";
 	if  (! isset($atts['id'])){
-		$quiz_id = $atts[0];	
+		$quiz_id = $atts[0];
 	} else {
 		$quiz_id = $atts['id'];
 	}
 	$thetypedcode.= " id=" . $quiz_id;
-	
+
 	if ( isset( $atts['questions']) ){
 		$input_number_questions = $atts['questions'];
 		$thetypedcode.= " questions=".$input_number_questions;
 	}
-	
+
 	if ( isset( $atts['randomq']) ){
 		$input_randomq = $atts['randomq'];
 		$thetypedcode.= " randomq=".$input_randomq;
 	}
-	
+
 	if ( isset( $atts['randoma']) ){
 		$input_randoma = $atts['randoma'];
 		$thetypedcode.= " randoma=".$input_randoma;
 	}
-	
+
 	if ( isset( $atts['singlepage']) ){
 		$input_singlepage = $atts['singlepage'];
 		$thetypedcode.= " singlepage=".$input_singlepage;
 	}
-	
+
 	if ( isset( $atts['multiplechances']) ){
 		$input_multiplechances = $atts['multiplechances'];
 		$thetypedcode.= " multiplechances=".$input_multiplechances;
 	}
-	
+
 	if ( isset( $atts['hints']) ){
 		$input_hints = $atts['hints'];
 		$thetypedcode.= " hints=".$input_hints;
 	}
-	
+
 	if ( isset( $atts['startscreen']) ){
 		$input_startscreen = $atts['startscreen'];
 		$thetypedcode.= " startscreen=".$input_startscreen;
 	}
-	
+
 	if ( isset( $atts['finalscreen']) ){
 		$input_finalscreen = $atts['finalscreen'];
 		$thetypedcode.= " finalscreen=".$input_finalscreen;
 	}
-	
+
 	if ( isset( $atts['showanswers']) ){
 		$input_showanswers = $atts['showanswers'];
 		$thetypedcode.= " showanswers=".$input_showanswers;
 	}
-	
-	
+
+
 	$show_list = 1;
 	if ( isset( $atts['list']) && $atts['list']== 'off' ){
 		$show_list = 0;
 		$thetypedcode.= " list=off";
 	}
-	
+
 	if ( isset( $atts['alerts']) && $atts['alerts']== 'on' ){
 		$input_alerts = 1;
 		$thetypedcode.= " alerts=on";
@@ -441,88 +441,88 @@ function mtq_shortcode( $atts ) {
 		$input_alerts = 0;
 		$thetypedcode.= " alerts=off";
 	}
-	
+
 	if ( isset( $atts['proofread'])  && $atts['proofread']== 'on' ){
 		$proofread = 1;
 		$thetypedcode.= " proofread=on";
 	}
-	
+
 	$show_title = 1;
 	if ( isset( $atts['title']) && $atts['title']== 'off' ){
 		$show_title = 0;
 		$thetypedcode.= " title=off";
 	}
-	
+
 	$show_labels = 1;
 	if ( isset( $atts['labels']) && $atts['labels']== 'off' ){
 		$show_labels = 0;
 		$thetypedcode.= " labels=off";
 	}
-	
+
 	$show_status = 1;
 	if ( isset( $atts['status']) && $atts['status']== 'off' ){
 		$show_status = 0;
 		$thetypedcode.= " status=off";
 	}
-	
+
 	if ( isset( $atts['time']) && mtq_check_all_timer() ){
 		$mtq_max_time = $atts['time'];
 		$mtq_use_timer = 1;
 		$thetypedcode.= " time=".$mtq_max_time;
 	}
-	
+
 	$offset_start = 1;
 	if( isset( $atts['offset']) && is_numeric($atts['offset']) && $atts['offset'] > 1 ){
 		$offset_start = $atts['offset'];
 		$thetypedcode.= " offset=".$offset_start;
 	}
-	
+
 	if( isset( $atts['firstq']) && is_numeric($atts['firstq']) && $atts['firstq'] > 1 ){
 		$offset_start = $atts['firstq'];
 		$thetypedcode.= " firstq=".$offset_start;
 	}
-	
+
 	$offset_stop = 0;
 	if( isset( $atts['lastq']) && is_numeric($atts['lastq']) && $atts['lastq'] > $offset_start ){
 		$offset_stop = $atts['lastq'];
 		$thetypedcode.= " lastq=".$offset_stop;
 	}
-	
+
 	$forcegf = 0;
 	if ( isset( $atts['forcegf']) ){
 		$forcegf = $atts['forcegf'];
 		$thetypedcode.= " forcegf=".$forcegf;
 	}
-	
+
 	$forcecf = 0;
 	if ( isset( $atts['forcecf']) ){
 		$forcecf = $atts['forcecf'];
 		$thetypedcode.= " forcecf=".$forcecf;
 	}
-	
+
 	$inform = 0;
 	if ( isset( $atts['inform']) && $atts['inform']=='on'  ){
 		$inform = 1;
 		$thetypedcode.= " inform=".$inform;
 	}
-	
+
 	$autoadvance = 0;
 	if ( isset( $atts['autoadvance']) && $atts['autoadvance'] == 'on'  ){
 		$autoadvance = 1;
 		$thetypedcode.= " autoadvance=on";
 	}
-	
+
 	$auto_submit = 0;
 	if ( isset( $atts['autosubmit']) && $atts['autosubmit'] == 'on'  ){
 		$auto_submit = 1;
 		$thetypedcode.= " autosubmit=on";
 	}
-	
+
 	if( isset( $atts['formid']) && is_numeric($atts['formid']) ){
 		$input_formid = $atts['formid'];
 		$thetypedcode.= " formid=".$input_formid;
 	}
-	
+
 	if ( mtq_check_theme_addon_exists() ) {
 		if( isset( $atts['color']) && ( in_array($atts['color'],mtq_color_options()) || $atts['color']=='random' )){
 			$input_color = $atts['color'];
@@ -533,10 +533,10 @@ function mtq_shortcode( $atts ) {
 	} else {
 		$input_color="blue";
 	}
-	
-	
 
-	
+
+
+
 	//$single_question = -1;
 	if( isset( $atts['singlequestion']) && is_numeric($atts['singlequestion']) && $atts['singlequestion'] >= 1 ){
 		$offset_start = $atts['singlequestion'];
@@ -546,27 +546,27 @@ function mtq_shortcode( $atts ) {
 		$thetypedcode.= " singlequestion=".$offset_start;
 		$thetypedcode.= " offset=".$offset_start;
 	}
-	
+
 	if( isset( $atts['scoring']) && is_numeric($atts['scoring']) ){
 		$scoring = $atts['scoring'];
 		$thetypedcode.= " scoring=".$scoring;
 	}
-	
+
 	if( isset( $atts['vform']) && is_numeric($atts['vform']) ){
 		$vform = $atts['vform'];
 		$thetypedcode.= " vform=".$vform;
 	}
-	
+
 	if( isset( $atts['showstamps']) && $atts['showstamps']=='end' ){
 		$show_stamps = 2;
 		$thetypedcode.= " showstamps=".$show_stamps;
 	}
-	
+
 	$thetypedcode.= "";
 	$replace_these	= array('showanswers=0','showanswers=1','showanswers=2');
 	$with_these = array ('showanswers=never','showanswers=end','showanswers=now');
 	$thetypedcodee = str_replace($replace_these, $with_these,$thetypedcode);
-	
+
 	$contents = '';
 	$mtq_mobile_device = mtq_is_mobile_device();
 	if(is_numeric($quiz_id)) { // Basic validiation - more on the show_quiz.php file.
@@ -574,13 +574,13 @@ function mtq_shortcode( $atts ) {
 		include(ABSPATH . 'wp-content/plugins/mtouch-quiz/show_quiz.php');
 		$contents = ob_get_contents();
 		ob_end_clean();
-		
+
 	}
 	$switch_my_latex =false;
 	if ( $mtq_mobile_device && $switch_my_latex ) {
-		$contents=switch_latex($contents);	
+		$contents=switch_latex($contents);
 	}
-	
+
 	//apply_filters('the_content',$contents);
 	if( !defined('mtq_quiz_present') ) {
 		define( 'mtq_quiz_present', '1' );
@@ -596,10 +596,10 @@ function switch_latex($stuff){
 
 function mtq_is_mobile_device(){
 		$return_value=false;
-	
+
 		$client_useragent=$_SERVER['HTTP_USER_AGENT'];
 		//echo $client_useragent;
-		
+
 		$simple_mobile_detect= Array("iPhone","iPod","android","webOS");
 		//echo $client_useragent;
 		foreach ($simple_mobile_detect as $mobile_agent) {
@@ -609,10 +609,10 @@ function mtq_is_mobile_device(){
 			}
 			else {
 				//echo "not mobile".$mobile_agent;
-			}	
+			}
 		}
-		
-		return $return_value;	
+
+		return $return_value;
 }
 
 
@@ -637,24 +637,29 @@ function mtq_enqueue_stuff() {
 		wp_register_style('mtq_ThemeStyleSheets', $mtq_ThemeStyleUrl,false,mtq_VERSION);
 		wp_enqueue_style( 'mtq_ThemeStyleSheets');
      }
-		
+
 	$mtq_proofread_StyleUrl = WP_PLUGIN_URL . '/mtouch-quiz/proofread.min.css';
     $mtq_proofread_StyleFile = WP_PLUGIN_DIR . '/mtouch-quiz/proofread.min.css';
-	 
+
 	//wp_enqueue_script("jquery");
-	if ( mtq_use_min == '1' ) {
-		wp_enqueue_script('mtq_script', WP_CONTENT_URL . '/plugins/mtouch-quiz/script.min.js',array('jquery'),mtq_VERSION,false);
-	} else {
+
 		wp_enqueue_script('mtq_script', WP_CONTENT_URL . '/plugins/mtouch-quiz/script.js',array('jquery'),mtq_VERSION,false);
-	}
+
+
+
 	//if (! get_option('mtouchquiz_skiploadjquerytools'))  {
 		//wp_enqueue_script('mtq_scrollable', WP_CONTENT_URL . '/plugins/mtouch-quiz/scrollable.js',array('jquery'),mtq_VERSION,false);
 	//}
 	//wp_enqueue_script('jquerytools_full','http://cdn.jquerytools.org/1.2.5/full/jquery.tools.min.js','1.2.5',false);
 	wp_dequeue_script('mtq_gf_script'); //Replaced Functions
+
+
 }
 
 add_filter('plugin_row_meta', 'mtq_filter_plugin_links', 10, 2);
+
+
+
 
 // Add FAQ and contact information
 function mtq_filter_plugin_links($links, $file)
@@ -663,7 +668,7 @@ function mtq_filter_plugin_links($links, $file)
 	{
 		$links[] = '<a href="http://gmichaelguy.com/quizplugin/go/faq/">' . __('FAQ', 'mtouchquiz') . '</a>';
 	}
-	
+
 	return $links;
 }
 
@@ -673,7 +678,7 @@ function mtq_donate_form() {
 			$return_string='';
 			$return_string.="<div class='wrap' style='width:500px;'>";
 			$return_string.="<h2>Support mTouch Quiz Plugin</h2>";
-			
+
 			$return_string.="<p>Your donations help support the development of mTouch Quiz.</p>";
 			$return_string.="<form action='https://www.paypal.com/cgi-bin/webscr' method='post'>";
 			$return_string.="  <div class='paypal-donations'>";
@@ -686,7 +691,7 @@ function mtq_donate_form() {
 			$return_string.="</form>";
 			$return_string.="</div>";
 			$return_string.="<!--//support div-->";
-			
+
 
 	 }
 
@@ -695,15 +700,15 @@ return $return_string;
 }
 
 //function add_sort_order() {
-//	
-//	//UPDATE wp_mtouchquiz_question SET `sort_order`=`ID`	
+//
+//	//UPDATE wp_mtouchquiz_question SET `sort_order`=`ID`
 //}
- 
+
 
 add_action('activate_mtouch-quiz/mtouchquiz.php','mtq_activate');
 function mtq_activate() {
 	global $wpdb;
-	
+
 	$database_version = mtq_database_version;
 	$installed_db = get_option('mtouchquiz_db_version');
 	// Initial options.
@@ -717,10 +722,10 @@ function mtq_activate() {
 	 add_option('mtouchquiz_color','blue');
 	 update_option('mtouchquiz_show_support',"true");
 	 //add_option('mtouchquiz_skiploadjquerytools', "0");
-	
+
 	if($database_version != $installed_db) {
 		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-	
+
 		$sql = "CREATE TABLE {$wpdb->prefix}mtouchquiz_answer (
 					ID int(11) unsigned NOT NULL auto_increment,
 					question_id int(11) unsigned NOT NULL,
@@ -783,4 +788,12 @@ function mtq_color_options()
 }
 
 
+function enqueue_lwd(){
+	wp_enqueue_script('lwd_script', WP_CONTENT_URL . '/plugins/mtouch-quiz/custom-script.js', array('mtq_script'), false, false );
 
+    // $wp_scripts->enqueue( 'lwd_script' );
+}
+add_action('init', 'enqueue_lwd');
+
+
+// wp_enqueue_script('mtq_script', WP_CONTENT_URL . '/plugins/mtouch-quiz/script.js',array('jquery'),mtq_VERSION,false);
