@@ -12,6 +12,17 @@
 		$GLOBALS['wpframe_plugin_name'] = basename(dirname(__FILE__));
 		$GLOBALS['wpframe_plugin_folder'] = $GLOBALS['wpframe_wordpress'] . '/wp-content/plugins/' . $GLOBALS['wpframe_plugin_name'];
 
+
+
+
+		// $email = $wpdb->get_var("SELECT user_email FROM wp_users WHERE user_login = 'danielpataki' ")
+
+		// Echo the user's email address
+
+
+
+
+
 		$quiz_options = $wpdb->get_row($wpdb->prepare("SELECT name,description,answer_mode,single_page,show_hints,show_start,show_final,multiple_chances,final_screen,random_questions,random_answers FROM {$wpdb->prefix}mtouchquiz_quiz WHERE ID=%d", $quiz_id));
 		$final_screen = stripslashes($quiz_options->final_screen);
 		$answer_display = stripslashes($quiz_options->answer_mode);
@@ -379,9 +390,25 @@
         </div>
     </div>
     <?php }
-if ($show_final ) {?>
+if ($show_final ) {
+
+		// Get minimum passing score
+
+		$passing_score = $wpdb->get_var("SELECT min_points FROM {$wpdb->prefix}mtouchquiz_ratings WHERE quiz_id=$quiz_id");
+		?>
+
+
     <div id="mtq_quiz_results_bubble-<?php echo $mtqid ?>" class="mtq_quiz_results_bubble">
         <div id="mtq_quiz_results-<?php echo $mtqid ?>" class="mtq_quiz_results">
+
+
+		<!-- Reach into the DB, get the passing score. If greater, show passing screen. -->
+		<?php echo "this is the minimum passing score: <div class='lwd_minimum_score'> ", $passing_score, "</div>";?>
+
+		<!-- Create a place where the JS will insert the passing score -->
+		<?php echo "this is the minimum passing score: <div class='lwd_final_score'></div>";?>
+
+
             <?php echo str_replace('%%QUIZ_NAME%%','<em>'.stripslashes($quiz_options->name).'</em>',$final_screen);?>
             <br>
         </div><?php if  ( $mtq_form_present && ! ( $inform ) ) { ?>
@@ -457,8 +484,6 @@ if ($show_final ) {?>
 													$image_number = ($answer_count-1) % 26;
 
 
-
-					// Start
 													echo   "<div id='mtq_row-{$question_count}-{$answer_count}-$mtqid' onclick='mtq_button_click({$question_count},{$answer_count},$mtqid)' class='mtq_clickable'>";
 														echo   "<div class='mtq_letter_button_td'>";
 															echo   "<div id='mtq_button-{$question_count}-{$answer_count}-$mtqid' class='mtq_letter_button_{$image_number}'  alt='".$q_label .", Choice ".$answer_count."'>";

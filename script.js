@@ -445,6 +445,10 @@ function mtq_results_message(mtqid) {
 	ResultsMsg = ResultsMsg.replace(/%%WRONG_ANSWERS%%/gi, mtq_total_questions[mtqid] - mtq_questions_correct[mtqid]);
 	ResultsMsg = ResultsMsg.replace(/%%PERCENTAGE%%/gi, mtq_score_percent[mtqid].toFixed(0) + "%");
 
+	let passing_score = document.querySelector('.lwd_minimum_score').textContent;
+	let final_score = document.querySelector('.lwd_final_score').textContent;
+	final_score += mtq_score_percent[mtqid].toFixed(0);
+
 	ResultsMsg = ResultsMsg.replace(/%%TIME_USED%%/gi, mtq_timer_initial_val[mtqid] - mtq_timer_val[mtqid]);
 	ResultsMsg = ResultsMsg.replace(/%%TIME_ALLOWED%%/gi, mtq_timer_initial_val[mtqid]);
 
