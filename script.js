@@ -445,8 +445,13 @@ function mtq_results_message(mtqid) {
 	ResultsMsg = ResultsMsg.replace(/%%WRONG_ANSWERS%%/gi, mtq_total_questions[mtqid] - mtq_questions_correct[mtqid]);
 	ResultsMsg = ResultsMsg.replace(/%%PERCENTAGE%%/gi, mtq_score_percent[mtqid].toFixed(0) + "%");
 
+	// let YourPercentage = ResultsMsg.replace(/%%PERCENTAGE%%/gi, mtq_score_percent[mtqid].toFixed(0) + "%");
+	const YourPercent = mtq_score_percent[mtqid];
+
+
 	ResultsMsg = ResultsMsg.replace(/%%TIME_USED%%/gi, mtq_timer_initial_val[mtqid] - mtq_timer_val[mtqid]);
 	ResultsMsg = ResultsMsg.replace(/%%TIME_ALLOWED%%/gi, mtq_timer_initial_val[mtqid]);
+
 
 	//Determine if a form should be added
 	var mtq_addForm = false;
@@ -1085,8 +1090,23 @@ function mtq_score_blindly(mtqid) { // This assumes that there was only one atte
 
 jQuery(document).ready(mtq_init);
 
-document.addEventListener("DOMContentLoaded", function (event) {
+function getMinScore(mtqid) {
+	const YourPercent = mtq_score_percent[mtqid];
+
+}
+
+document.addEventListener("DOMContentLoaded", function (event, YourPercent) {
+
+
+	const passingScore =
 	var question_count = document.querySelectorAll('.mtq_question').length;
+
+	var passingPercent = document.getElementById("lwd-passing-score");
+
+
+
+
+	console.log('within the func: ', YourPercent, passingPercent);
 
 	var node = document.createElement("DIV");
 	var textNode = document.createTextNode("Hello");

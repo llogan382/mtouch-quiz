@@ -382,6 +382,16 @@
 if ($show_final ) {?>
     <div id="mtq_quiz_results_bubble-<?php echo $mtqid ?>" class="mtq_quiz_results_bubble">
         <div id="mtq_quiz_results-<?php echo $mtqid ?>" class="mtq_quiz_results">
+
+			<?php
+								$passing_score = $wpdb->get_var("SELECT min_points FROM {$wpdb->prefix}mtouchquiz_ratings WHERE quiz_id=1");
+								echo "<div id='lwd-passing-score'>$passing_score</div>";
+								?>
+
+
+
+
+
             <?php echo str_replace('%%QUIZ_NAME%%','<em>'.stripslashes($quiz_options->name).'</em>',$final_screen);?>
             <br>
         </div><?php if  ( $mtq_form_present && ! ( $inform ) ) { ?>
