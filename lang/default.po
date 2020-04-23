@@ -1,4 +1,4 @@
-# Copyright (C) 2012 
+# Copyright (C) 2012
 # This file is distributed under the same license as the  package.
 msgid ""
 msgstr ""
@@ -475,7 +475,7 @@ msgid "Create New Question"
 msgstr ""
 
 #: quiz_form.php:25
-msgid "<p>Congratulations - you have completed %%QUIZ_NAME%%.</p><p>You scored %%SCORE%% out of %%TOTAL%%.</p><p>Your performance has been rated as %%RATING%%</p>"
+msgid "  <div class='lwd-passed-img'></div><p>Congratulations - you passed %%QUIZ_NAME%%.</p><p>You scored %%SCORE%% out of %%TOTAL%%.</p><p>Your performance has been rated as %%RATING%%</p><div class='lwd-final-score'>FINAL SCORE</div>"
 msgstr ""
 
 #: quiz_form.php:41

@@ -23,7 +23,17 @@ if($action == 'edit') {
 	$tquizfm = $wpdb->get_row($wpdb->prepare("SELECT time_limit FROM {$wpdb->prefix}mtouchquiz_quiz WHERE ID=%d", $clean_quiz));
 	$mtq_time = stripslashes($tquizfm->time_limit);
 } else {
-	$final_screen = __("<p>Congratulations - you have completed %%QUIZ_NAME%%.</p><p>You scored %%SCORE%% out of %%TOTAL%%.</p><p>Your performance has been rated as %%RATING%%</p>", 'mtouchquiz');
+  $final_screen = __("
+  <div class='lwd-passed-img'>
+  </div>
+  <p>Congratulations - you passed %%QUIZ_NAME%%.</p><p>You scored %%SCORE%% out of %%TOTAL%%.</p><p>Your performance has been rated as %%RATING%%
+  </p>
+  <div class='lwd-final-score'>
+  FINAL SCORE
+  </div>
+
+
+  ", 'mtouchquiz');
 }
 
 ?>
@@ -57,40 +67,40 @@ if($action == 'edit') {
         </div>
       </div>
             <div class="postbox mtq_premium_feature"><div class="mtq_email"></div>
-        <h3 class="hndle"> 
+        <h3 class="hndle">
            <a href="http://gmichaelguy.com/quizplugin/go/premium/" title="Results Form" target="_blank">Results Form ID</a> <?php echo "(".__('For Email Submission of Quiz Results','mtouchquiz').")"?> Works best with <a href="http://gmichaelguy.com/quizplugin/go/gravity/" title="Find out about Gravity Forms" target="_blank">Gravity Forms</a></h3>
         <div class="inside">
          <?php
-		 
-	   
+
+
 		 // Makes sure the plugin is defined before trying to use it
 		$mtq_cf7_addon_active = mtq_check_addon_cf7_active();
 		$mtq_cf7_active = mtq_check_cf7_active();
 		$mtq_cf7_addon_exists =  mtq_check_addon_cf7_exists();
 		$mtq_cf7_exists = mtq_check_cf7_exists();
 		$mtq_cf7_allgood = mtq_check_all_cf7();
-	  
+
 		$mtq_gf_addon_active = mtq_check_addon_gf_active();
 		$mtq_gf_active = mtq_check_gf_active();
 		$mtq_gf_addon_exists =  mtq_check_addon_gf_exists();
 		$mtq_gf_exists = mtq_check_gf_exists();
 		$mtq_gf_allgood = mtq_check_all_gf();
-		
-		$mtq_theme_allgood=mtq_check_theme_addon_exists();
-	
 
-	
+		$mtq_theme_allgood=mtq_check_theme_addon_exists();
+
+
+
 	if ( ! $mtq_gf_addon_active && ! $mtq_cf7_addon_active ) { ?>
           <h4> <?php _e('To allow users to submit their results to you via email, you need a ','mtouchquiz'); echo '<a href="http://gmichaelguy.com/quizplugin/go/premium/" title="mTouch Quiz Premium Feature Addon" target="_blank">mTouch Quiz Premium Feature</a> addon. '; ?></h4>
       <span style="display:none"><textarea name="gravity" rows="1" cols="100"><?php echo $form_code ?></textarea></span>
       <?php } else {
 		   ?>
-           <h4> <?php _e('<a href="http://gmichaelguy.com/quizplugin/go/premium/" title="Find out about mTouch Quiz Premium Feature Addons">For detailed instructions on how to configure this option visit the plugin homepage.</a>', 'mtouchquiz'); 
-		   
+           <h4> <?php _e('<a href="http://gmichaelguy.com/quizplugin/go/premium/" title="Find out about mTouch Quiz Premium Feature Addons">For detailed instructions on how to configure this option visit the plugin homepage.</a>', 'mtouchquiz');
+
 		   ?></h4>
 		  <textarea name="gravity" rows="1" cols="100"><?php echo $form_code ?></textarea>
 	<?php  } ?>
-      
+
       </div></div>
       <div id="<?php echo user_can_richedit() ? 'postdivrich' : 'postdiv'; ?>" class="postarea postbox">
         <h3 class="hndle"> <span>
@@ -113,9 +123,9 @@ if($action == 'edit') {
               Results Form<?php _e(' location for emailing results. (You may put this variable in the ratings below for conditional email option)', 'mtouchquiz') ?>
               <?php } else {
               _e('To allow users to submit their results to you via email, you need a ','mtouchquiz'); echo '<a href="http://gmichaelguy.com/quizplugin/go/premium/" title="mTouch Quiz Premium Feature" target="_blank">mTouch Quiz Premium Feature</a>.';
-              
+
               } ?>
-              
+
               </td>
             </tr>
             <tr>
@@ -159,7 +169,7 @@ if($action == 'edit') {
       <?php
 			// This is somewhat of a workaround to add some editing now.
 	?>
-    
+
        <script type="text/javascript">
 			jQuery(document).ready(function($) {
 
@@ -205,8 +215,8 @@ if($action == 'edit') {
           </span> </h3>
         <div class="inside">
           <h4><?php _e('Enter the percent (whole numbers only) and the message you would like the user to receive in place of the %%RATING%% variable. One of these messages will be displayed if their score is greater than or equal to the listed score.', 'mtouchquiz'); ?></h4>
-          <?php 
-		
+          <?php
+
 			if ($action == 'edit') {
 				$all_ratings = $wpdb->get_results($wpdb->prepare("SELECT score_rating, min_points FROM {$wpdb->prefix}mtouchquiz_ratings WHERE quiz_id=%d ORDER BY min_points", intval($_REQUEST['quiz'])));
 			}
@@ -214,13 +224,13 @@ if($action == 'edit') {
 			$default_messages = array(__("Need more practice!", 'mtouchquiz'),__("Keep trying!", 'mtouchquiz'),__("Not bad!", 'mtouchquiz'),__("Good work!", 'mtouchquiz'),__("Perfect!", 'mtouchquiz'));
 			$num_ratings = 5;
 			if ($action == 'edit' and $num_ratings < count($all_ratings)) $num_ratings = count($all_ratings) ;
-			for($i=1; $i<=$num_ratings; $i++) 
+			for($i=1; $i<=$num_ratings; $i++)
 			{
 	?>
           <p>
             <textarea name="min_points[]" rows="1" cols="3" id="min_points_<?php echo $i?>" value="<?php echo $i?>"><?php if($action == 'edit') {echo stripslashes($all_ratings[$i-1]->min_points );} else {echo $default_ratings[$i-1];}?>
 </textarea>
-            <textarea name="score_rating[]" rows="1" cols="100" id="score_rating_<?php echo $i?>" value="<?php echo $i?>"><?php if($action == 'edit') {echo stripslashes($all_ratings[$i-1]->score_rating); }else {echo $default_messages[$i-1];} ?> 
+            <textarea name="score_rating[]" rows="1" cols="100" id="score_rating_<?php echo $i?>" value="<?php echo $i?>"><?php if($action == 'edit') {echo stripslashes($all_ratings[$i-1]->score_rating); }else {echo $default_messages[$i-1];} ?>
 </textarea>
           </p>
           <?php 	} ?>
@@ -250,7 +260,7 @@ if($action == 'edit') {
 				//para.innerHTML("</td></tr></table>");
 				//var BigTable = document.createElement("table");
 				//BigTable.
-				
+
 				//$("extra-answers").innerHTML += code.replace(/%%NUMBER%%/g, answer_count);
 				document.getElementById("extra-ratings").appendChild(para);
 			}
@@ -334,41 +344,41 @@ if($action == 'edit') {
           </table>
         </div>
       </div>
-      
+
       <div class="postbox mtq_premium_feature"><div class="mtq_timer_icon"></div>
-        <h3 class="hndle"> 
+        <h3 class="hndle">
            <a href="http://gmichaelguy.com/quizplugin/go/timer/" title="Time Limit" target="_blank">Time Limit (in seconds)</a> <?php echo "(".__('Add a time limit and countdown clock.','mtouchquiz').")"?> </h3>
         <div class="inside">
          <?php
-		 
-	   
+
+
 		 // Makes sure the plugin is defined before trying to use it
 		$mtq_timer_addon_active = mtq_check_addon_timer_active();
 		$mtq_timer_addon_exists =  mtq_check_addon_timer_exists();
 		$mtq_timer_allgood = mtq_check_all_timer();
-	  	
+
 	if ( ! $mtq_timer_allgood ) { ?>
           <h4> <?php _e('To set a time limit and have a countdown clock, you need the ','mtouchquiz'); echo '<a href="http://gmichaelguy.com/quizplugin/go/timer/" title="mTouch Quiz Timer Addon" target="_blank">mTouch Quiz Timer</a> addon. '; ?></h4>
       <span style="display:none"><textarea name="mtq_timer" rows="1" cols="100"><?php echo $mtq_time ?></textarea></span>
       <?php } else {
 		   ?>
-           <h4 > <?php _e('<a href="http://gmichaelguy.com/quizplugin/go/timer/" title="mTouch Quiz Timer Addon" target="_blank">For detailed instructions on how to configure the timer option visit the plugin homepage.</a>', 'mtouchquiz'); 
-		   
+           <h4 > <?php _e('<a href="http://gmichaelguy.com/quizplugin/go/timer/" title="mTouch Quiz Timer Addon" target="_blank">For detailed instructions on how to configure the timer option visit the plugin homepage.</a>', 'mtouchquiz');
+
 		   ?></h4>
 		  <textarea name="mtq_timer" rows="1" cols="100"><?php echo $mtq_time ?></textarea>
 	<?php  } ?>
-      
+
       </div></div>
       <div class="inside">
       <?php
 	  if ($mtq_theme_allgood) {
 	  	$mtq_color_theme=get_option("mtouchquiz_color");
 	  } else {
-		 $mtq_color_theme="blue"; 
+		 $mtq_color_theme="blue";
 	  }
 	  ?>
       Your <a href="admin.php?page=mtouch-quiz/theme.php">color theme</a> is <span class="mtq_color_<?php echo $mtq_color_theme; ?>"><span class="mtq_css_letter_button">A</span><?php echo $mtq_color_theme; ?></span>
-      
+
       </div>
       <p class="submit">
         <?php wp_nonce_field('mtq_create_edit_quiz'); ?>

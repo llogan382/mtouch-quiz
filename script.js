@@ -400,14 +400,14 @@ function mtq_start_quiz(mtqid) {
 }
 
 function mtq_show_nav(mtqid) {
-	jQuery("#mtq_question_container-" + mtqid).css('display', 'none');
+	// jQuery("#mtq_question_container-" + mtqid).css('display', 'none');
 	//jQuery("#mtq_navigator-"+mtqid).slideDown();
 	jQuery("#mtq_navigator-" + mtqid).css('display', 'block');
 
 }
 
 function mtq_nav_click(q, mtqid) {
-	jQuery("#mtq_navigator-" + mtqid).css('display', 'none');
+	// jQuery("#mtq_navigator-" + mtqid).css('display', 'none');
 	//jQuery("#mtq_navigator-"+mtqid).slideUp();
 	jQuery("#mtq_question_container-" + mtqid).css('display', 'block');
 	//jQuery("#mtq_scroll_container-"+mtqid).data("mtqscrollable").mtq_seekTo(q-1,0);
@@ -436,6 +436,33 @@ function mtq_results_message(mtqid) {
 			break;
 		}
 	}
+
+	var Rating = parseInt(document.querySelector('.lwd_minimum_score').textContent);
+	var Percentage = mtq_score_percent[mtqid].toFixed(0);
+	var resultMessage = document.querySelector('.lwd-result-message');
+	if (Percentage > Rating) {
+		console.log('You passed!');
+
+		resultMessage.innerHTML = `<div class="lwd-passed-img">
+		</div>
+			<div class="congrats-text">
+				<span>Congratulations,</span></br>
+			you passed!
+		</div>
+			<div class="both-score">
+				<div class="score passing-score">
+					<span>${Percentage}%</span>
+				Passing Score
+			</div>
+				<div class="score your-score">
+				<span>${Rating}%</span></br>
+
+				Your Score
+			</div>
+			</div>`;
+	}
+
+
 	var mtq_quiz_name;
 	mtq_quiz_name = jQuery("#mtq_quiztitle-" + mtqid).text();
 	ResultsMsg = ResultsMsg.replace(/%%QUIZ_NAME%%/gi, mtq_quiz_name);
@@ -444,6 +471,14 @@ function mtq_results_message(mtqid) {
 	ResultsMsg = ResultsMsg.replace(/%%TOTAL%%/gi, mtq_total_questions[mtqid]);
 	ResultsMsg = ResultsMsg.replace(/%%WRONG_ANSWERS%%/gi, mtq_total_questions[mtqid] - mtq_questions_correct[mtqid]);
 	ResultsMsg = ResultsMsg.replace(/%%PERCENTAGE%%/gi, mtq_score_percent[mtqid].toFixed(0) + "%");
+
+
+
+
+
+
+
+
 
 	ResultsMsg = ResultsMsg.replace(/%%TIME_USED%%/gi, mtq_timer_initial_val[mtqid] - mtq_timer_val[mtqid]);
 	ResultsMsg = ResultsMsg.replace(/%%TIME_ALLOWED%%/gi, mtq_timer_initial_val[mtqid]);
@@ -469,6 +504,7 @@ function mtq_results_message(mtqid) {
 	//		jQuery("#mtq_quiz_results-"+mtqid).append(theClonedForm);
 	//	}
 	//}
+
 }
 
 function mtq_gf_fill_form(results_message, mtqid) {
@@ -497,6 +533,11 @@ function mtq_gf_fill_form(results_message, mtqid) {
 }
 
 function mtq_get_results(mtqid) {
+
+
+
+
+
 
 	mtq_quiz_finished[mtqid] = true;
 	mtq_timer_on[mtqid] = 0;
@@ -630,6 +671,8 @@ function mtq_get_results(mtqid) {
 			jQuery("#mtq_question_explanation-" + q + "-" + mtqid).css('display', 'block');
 
 		}
+
+
 	}
 
 	//mtq_MarkSelectedRows(); // Mark the answer rows that were selected
@@ -696,6 +739,8 @@ function mtq_get_results(mtqid) {
 		}
 	}
 	mtq_set_height(1, mtqid);
+
+
 }
 
 
@@ -803,13 +848,13 @@ function mtq_update_status(mtqid) {
 	}
 
 
-	var status_msg = mtq_have_completed_string + " " + mtq_questions_answered[mtqid] + "/" + mtq_total_questions[mtqid] + " " + mtq_questions_string + ".";
+	var status_msg = "";
 	if (mtq_total_questions[mtqid] == 1) {
-		status_msg = mtq_have_completed_string + " " + mtq_questions_answered[mtqid] + "/" + mtq_total_questions[mtqid] + " " + mtq_question_string + ".";
+		status_msg = [mtqid] + "/" + mtq_total_questions[mtqid] + " " + mtq_question_string + ".";
 	}
 
 	if (mtq_answer_display[mtqid] == 2) {
-		status_msg += "<br>" + mtq_your_score_is_string + " " + mtq_score_percent[mtqid].toFixed(0) + "%.";
+		status_msg += "<br>" + mtq_your_score_is_string + " " + mtq_score_percent[mtqid].toFixed(0) + "/100% <br> Score";
 	}
 
 	if (mtq_questions_answered[mtqid] == mtq_total_questions[mtqid] && !mtq_show_final[mtqid]) {
@@ -1085,11 +1130,21 @@ function mtq_score_blindly(mtqid) { // This assumes that there was only one atte
 
 jQuery(document).ready(mtq_init);
 
+document.addEventListener("DOMContentLoaded", function (event) {
+	var question_count = document.querySelectorAll('.mtq_question').length;
 
-var lwd_quiz_nav = document.querySelector('.mtq_navigator');
-var lwd_quiz_content = document.querySelector('.lwd-question-container');
+	var node = document.createElement("DIV");
+	var textNode = document.createTextNode("Hello");
+	node.appendChild(textNode);
 
-var parent_node = document.querySelector('.mtq_quiz_area');
+	let labels = document.querySelectorAll('.mtq_question_label');
+	for (var label of labels) {
+		label.innerHTML += `/${question_count}`
+	}
 
-parent_node.insertBefore(lwd_quiz_nav, lwd_quiz_content);
+
+
+	// scrollable.insertBefore(questionText, items);
+	// quizArea.appendChild(questionText);
+});
 
