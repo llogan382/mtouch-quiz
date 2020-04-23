@@ -1,6 +1,6 @@
 @charset "utf-8";
 /* CSS Document */
-/* 
+/*
 Theme Name: green
 Super Dark: #004A07
 Dark: #00930E
@@ -39,7 +39,7 @@ Super Light: #E6F5E7
 .mtq_color_green .mtq_css_next_button, .mtq_color_green .mtq_css_back_button {
 	color:#004A07;
 }
-/* 
+/*
 Theme Name: red
 Super Dark: #6C0C18
 Dark: #D81830
@@ -78,7 +78,7 @@ Super Light: #FCE8EB
 .mtq_color_red .mtq_css_next_button, .mtq_color_red .mtq_css_back_button {
 	color:#6C0C18;
 }
-/* 
+/*
 Theme Name: orange
 Super Dark: #D95700
 Dark: #FF6600
@@ -117,7 +117,7 @@ Super Light: #FFF0E6
 .mtq_color_orange .mtq_css_next_button, .mtq_color_orange .mtq_css_back_button {
 	color:#D95700;
 }
-/* 
+/*
 Theme Name: yellow
 Super Dark: #D9D900
 Dark: #FFD700
@@ -156,7 +156,7 @@ Super Light: #FFFFE6
 .mtq_color_yellow .mtq_css_next_button, .mtq_color_yellow .mtq_css_back_button {
 	color:#D9D900;
 }
-/* 
+/*
 Theme Name: blue
 Super Dark: #339
 Dark: #06F
@@ -170,7 +170,7 @@ Super Light: #eff2ff
 }
 .mtq_color_blue .mtq_quiz_results_bubble, .mtq_color_blue .mtq_list_item_complete, .mtq_color_blue .mtq_shaded_item_msg, .mtq_color_blue .mtq_hint, .mtq_color_blue .mtq_hint_label, .mtq_color_blue .mtq_hint_text { /*Super Dark Text with Light background*/
 	color:#339;
-	background:#d0dafd!important;
+	/* background:#d0dafd!important; */
 	border-color:#06F !important;
 }
 .mtq_color_blue .mtq_css_button:hover, .mtq_color_blue .mtq_css_letter_button:hover { /*Medium Button with white text */
@@ -186,7 +186,7 @@ Super Light: #eff2ff
 	border-bottom:.1em solid #06F !important;
 }
 .mtq_color_blue .mtq_oce_first /* Light Background */ {
-	background:#d0dafd;
+	/* background:#d0dafd; */
 }
 .mtq_color_blue .mtq_answer_table tr:hover td { /* Super light background, black text */
 	color:#000;
@@ -195,7 +195,7 @@ Super Light: #eff2ff
 .mtq_color_blue .mtq_css_next_button, .mtq_color_blue .mtq_css_back_button {
 	color:#339;
 }
-/* 
+/*
 Theme Name: indigo
 Super Dark: #270747
 Dark: #2E0854
@@ -234,7 +234,7 @@ Super Light: #EBE7EE
 .mtq_color_indigo .mtq_css_next_button, .mtq_color_indigo .mtq_css_back_button {
 	color:#270747;
 }
-/* 
+/*
 Theme Name: violet
 Super Dark: #4F2F4F
 Dark: #7B637B
@@ -273,7 +273,7 @@ Super Light: #EEEBEE
 .mtq_color_violet .mtq_css_next_button, .mtq_color_violet .mtq_css_back_button {
 	color:#4F2F4F;
 }
-/* 
+/*
 Theme Name: fuchsia
 Super Dark: #D900D9
 Dark: #FF40FF
@@ -312,7 +312,7 @@ Super Light: #FFE6FF
 .mtq_color_fuchsia .mtq_css_next_button, .mtq_color_fuchsia .mtq_css_back_button {
 	color:#D900D9;
 }
-/* 
+/*
 Theme Name: khaki
 Super Dark: #5C3317
 Dark: #9F9F5F
@@ -351,7 +351,7 @@ Super Light: #F5F5EF
 .mtq_color_khaki .mtq_css_next_button, .mtq_color_khaki .mtq_css_back_button {
 	color:#5C3317;
 }
-/* 
+/*
 Theme Name: burgundy
 Super Dark: #4F0304
 Dark: #9E0508
@@ -390,7 +390,7 @@ Super Light: #E7C0C1
 .mtq_color_burgundy .mtq_css_next_button, .mtq_color_burgundy .mtq_css_back_button {
 	color:#4F0304;
 }
-/* 
+/*
 Theme Name: black
 Super Dark: #000000
 Dark: #000000
@@ -429,7 +429,7 @@ Super Light: #E6E6E6
 .mtq_color_black .mtq_css_next_button, .mtq_color_black .mtq_css_back_button {
 	color:#000000;
 }
-/* 
+/*
 Theme Name: lightblue
 Super Dark: #0147FA
 Dark: #ADD8E6
@@ -468,7 +468,7 @@ Super Light: #EAF5F9
 .mtq_color_lightblue .mtq_css_next_button, .mtq_color_lightblue .mtq_css_back_button {
 	color:#0147FA;
 }
-/* 
+/*
 Theme Name: teal
 Super Dark: #004040
 Dark: #008080
@@ -507,7 +507,7 @@ Super Light: #BFDFDF
 .mtq_color_teal .mtq_css_next_button, .mtq_color_teal .mtq_css_back_button {
 	color:#004040;
 }
-/* 
+/*
 Theme Name: lightgreen
 Super Dark: #002600
 Dark: #90EE90
@@ -546,7 +546,7 @@ Super Light: #E3FBE3
 .mtq_color_lightgreen .mtq_css_next_button, .mtq_color_lightgreen .mtq_css_back_button {
 	color:#002600;
 }
-/* 
+/*
 Theme Name: lightpink
 Super Dark: #BF8991
 Dark: #FFB6C1
@@ -585,7 +585,7 @@ Super Light: #FFEDEF
 .mtq_color_lightpink .mtq_css_next_button, .mtq_color_lightpink .mtq_css_back_button {
 	color:#BF8991;
 }
-/* 
+/*
 Theme Name: darkgreen
 Super Dark: #002600
 Dark: #003300
@@ -624,7 +624,7 @@ Super Light: #BFCCBF
 .mtq_color_darkgreen .mtq_css_next_button, .mtq_color_darkgreen .mtq_css_back_button {
 	color:#002600;
 }
-/* 
+/*
 Theme Name: brown
 Super Dark: #442110
 Dark: #87421F
@@ -663,7 +663,7 @@ Super Light: #E1D0C7
 .mtq_color_brown .mtq_css_next_button, .mtq_color_brown .mtq_css_back_button {
 	color:#442110;
 }
-/* 
+/*
 Theme Name: purple
 Super Dark: #400040
 Dark: #800080
@@ -702,7 +702,7 @@ Super Light: #DFBFDF
 .mtq_color_purple .mtq_css_next_button, .mtq_color_purple .mtq_css_back_button {
 	color:#400040;
 }
-/* 
+/*
 Theme Name: navy
 Super Dark: #121247
 Dark: #23238E
@@ -741,7 +741,7 @@ Super Light: #C8C8E3
 .mtq_color_navy .mtq_css_next_button, .mtq_color_navy .mtq_css_back_button {
 	color:#121247;
 }
-/* 
+/*
 Theme Name: darkpink
 Super Dark: #67083B
 Dark: #CD1076
@@ -780,7 +780,7 @@ Super Light: #F2C3DD
 .mtq_color_darkpink .mtq_css_next_button, .mtq_color_darkpink .mtq_css_back_button {
 	color:#67083B;
 }
-/* 
+/*
 Theme Name: lavender
 Super Dark: #664D66
 Dark: #CC99CC

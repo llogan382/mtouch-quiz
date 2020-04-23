@@ -423,11 +423,64 @@ border-radius: 8px;
 }
 
 
- .lwd-progress-row{
-
- }
-
  .lwd-passed-img{
 	background: url(images/passed.png) no-repeat 0 0px;
-
+	height: 1.5vw;
+	width: auto;
  }
+ .congrats-text{
+	font-family: DM Sans;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 1.953em;
+	line-height: 33px;
+	text-align: center;
+
+	color: #202430;
+ }
+
+ .score{
+	 border-radius: 800px;
+	 border: 5px solid #2CCEC0;
+ }
+ .score > span{
+	 color: #2CCEC0;
+	 font-size: 1.563em;
+ }
+ .passing-score{
+	border: 5px solid #E3E9F5;
+ }
+
+
+.lwd-passed-img {
+	/* height: 1.5vw; */
+	/* width: auto; */
+	height: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+  }
+
+
+
+  .lwd-result-message {
+	display: grid;
+	grid-template-columns: 1fr;
+  }
+
+
+
+  .both-score {
+
+	grid-template-columns: 1fr 1fr;
+	border: 2px solid black;
+
+	grid-template-rows: 32vw;
+	grid-gap: 20vw;
+	padding: 0 50px;
+  }
+
+
+  div.score {
+	font-size: 1.9em;
+  }

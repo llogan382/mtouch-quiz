@@ -436,6 +436,33 @@ function mtq_results_message(mtqid) {
 			break;
 		}
 	}
+
+	var Rating = parseInt(document.querySelector('.lwd_minimum_score').textContent);
+	var Percentage = mtq_score_percent[mtqid].toFixed(0);
+	var resultMessage = document.querySelector('.lwd-result-message');
+	if (Percentage > Rating) {
+		console.log('You passed!');
+
+		resultMessage.innerHTML = `<div class="lwd-passed-img">
+		</div>
+			<div class="congrats-text">
+				<span>Congratulations,</span></br>
+			you passed!
+		</div>
+			<div class="both-score">
+				<div class="score passing-score">
+					<span>${Percentage}%</span>
+				Passing Score
+			</div>
+				<div class="score your-score">
+				<span>${Rating}%</span></br>
+
+				Your Score
+			</div>
+			</div>`;
+	}
+
+
 	var mtq_quiz_name;
 	mtq_quiz_name = jQuery("#mtq_quiztitle-" + mtqid).text();
 	ResultsMsg = ResultsMsg.replace(/%%QUIZ_NAME%%/gi, mtq_quiz_name);
@@ -445,9 +472,13 @@ function mtq_results_message(mtqid) {
 	ResultsMsg = ResultsMsg.replace(/%%WRONG_ANSWERS%%/gi, mtq_total_questions[mtqid] - mtq_questions_correct[mtqid]);
 	ResultsMsg = ResultsMsg.replace(/%%PERCENTAGE%%/gi, mtq_score_percent[mtqid].toFixed(0) + "%");
 
-	let passing_score = document.querySelector('.lwd_minimum_score').textContent;
-	let final_score = document.querySelector('.lwd_final_score').textContent;
-	final_score += mtq_score_percent[mtqid].toFixed(0);
+
+
+
+
+
+
+
 
 	ResultsMsg = ResultsMsg.replace(/%%TIME_USED%%/gi, mtq_timer_initial_val[mtqid] - mtq_timer_val[mtqid]);
 	ResultsMsg = ResultsMsg.replace(/%%TIME_ALLOWED%%/gi, mtq_timer_initial_val[mtqid]);
@@ -473,6 +504,7 @@ function mtq_results_message(mtqid) {
 	//		jQuery("#mtq_quiz_results-"+mtqid).append(theClonedForm);
 	//	}
 	//}
+
 }
 
 function mtq_gf_fill_form(results_message, mtqid) {
@@ -501,6 +533,11 @@ function mtq_gf_fill_form(results_message, mtqid) {
 }
 
 function mtq_get_results(mtqid) {
+
+
+
+
+
 
 	mtq_quiz_finished[mtqid] = true;
 	mtq_timer_on[mtqid] = 0;
@@ -634,6 +671,8 @@ function mtq_get_results(mtqid) {
 			jQuery("#mtq_question_explanation-" + q + "-" + mtqid).css('display', 'block');
 
 		}
+
+
 	}
 
 	//mtq_MarkSelectedRows(); // Mark the answer rows that were selected
@@ -700,6 +739,8 @@ function mtq_get_results(mtqid) {
 		}
 	}
 	mtq_set_height(1, mtqid);
+
+
 }
 
 
@@ -1100,6 +1141,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
 	for (var label of labels) {
 		label.innerHTML += `/${question_count}`
 	}
+
+
 
 	// scrollable.insertBefore(questionText, items);
 	// quizArea.appendChild(questionText);

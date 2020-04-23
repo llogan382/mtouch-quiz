@@ -406,14 +406,20 @@ if ($show_final ) {
 		<?php echo "this is the minimum passing score: <div class='lwd_minimum_score'> ", $passing_score, "</div>";?>
 
 		<!-- Create a place where the JS will insert the passing score -->
-		<?php echo "this is the minimum passing score: <div class='lwd_final_score'></div>";?>
 
 
-            <?php echo str_replace('%%QUIZ_NAME%%','<em>'.stripslashes($quiz_options->name).'</em>',$final_screen);?>
-            <br>
+			<div class="lwd_final_score">
+           	 <?php echo str_replace('%%QUIZ_NAME%%','<em>'.stripslashes($quiz_options->name).'</em>',$final_screen);?>
+			<br>
+			</div>
+
         </div><?php if  ( $mtq_form_present && ! ( $inform ) ) { ?>
         <div id="mtq_contact_form-<?php echo $mtqid ?>"> <?php echo ($form_code); ?> </div>
-        <?php } ?> <div id="mtq_quiz_results_highlight-<?php echo $mtqid ?>" class="mtq_quiz_results_highlight">
+		<?php } ?>
+		<div class="lwd-result-message">
+
+		</div>
+		<div id="mtq_quiz_results_highlight-<?php echo $mtqid ?>" class="mtq_quiz_results_highlight">
             <?php _e('Your answers are highlighted below.', 'mtouchquiz'); ?>
         </div>
     </div>
