@@ -442,6 +442,8 @@ border-radius: 8px;
  .score{
 	 border-radius: 800px;
 	 border: 5px solid #2CCEC0;
+	 text-align: center;
+	 padding: 4vw 0;
  }
  .score > span{
 	 color: #2CCEC0;
@@ -466,12 +468,13 @@ border-radius: 8px;
   .lwd-result-message {
 	display: grid;
 	grid-template-columns: 1fr;
+	grid-template-rows: 400px auto auto;
   }
 
 
 
   .both-score {
-
+display: grid;
 	grid-template-columns: 1fr 1fr;
 	border: 2px solid black;
 
