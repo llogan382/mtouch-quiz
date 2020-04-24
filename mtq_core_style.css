@@ -476,8 +476,6 @@ border-radius: 8px;
   .both-score {
 display: grid;
 	grid-template-columns: 1fr 1fr;
-	border: 2px solid black;
-
 	grid-template-rows: 32vw;
 	grid-gap: 20vw;
 	padding: 0 50px;
