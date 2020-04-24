@@ -445,7 +445,7 @@ function mtq_results_message(mtqid) {
 
 		resultMessage.innerHTML = `<div class="lwd-passed-img">
 		</div>
-			<div class="congrats-text">
+			<div class="end-text congrats-text">
 				<span>Congratulations,</span></br>
 			you passed!
 		</div>
@@ -460,6 +460,27 @@ function mtq_results_message(mtqid) {
 				Your Score
 			</div>
 			</div>`;
+	} else {
+
+		resultMessage.innerHTML = `<div class="lwd-failed-img">
+		</div>
+			<div class="end-text failure-text">
+				<span>Congratulations,</span></br>
+			you passed!
+		</div>
+			<div class="both-score">
+				<div id="score" class="passing-score">
+					<span>${Percentage}%</span>
+				Passing Score
+			</div>
+				<div id="score" class="failing-score">
+				<span>${Rating}%</span></br>
+
+				Your Score
+			</div>
+			</div>`;
+
+
 	}
 
 
