@@ -450,11 +450,11 @@ function mtq_results_message(mtqid) {
 			you passed!
 		</div>
 			<div class="both-score">
-				<div class="score passing-score">
+				<div id="score" class="passing-score">
 					<span>${Percentage}%</span>
 				Passing Score
 			</div>
-				<div class="score your-score">
+				<div id="score" class="your-score">
 				<span>${Rating}%</span></br>
 
 				Your Score
