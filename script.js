@@ -465,16 +465,16 @@ function mtq_results_message(mtqid) {
 		resultMessage.innerHTML = `<div class="lwd-failed-img">
 		</div>
 			<div class="end-text failure-text">
-				<span>Congratulations,</span></br>
-			you passed!
+				<span>Sorry,</span></br>
+			you failed
 		</div>
 			<div class="both-score">
 				<div id="score" class="passing-score">
-					<span>${Percentage}%</span>
+					<span>${Rating}%</span>
 				Passing Score
 			</div>
 				<div id="score" class="failing-score">
-				<span>${Rating}%</span></br>
+				<span>${Percentage}%</span></br>
 
 				Your Score
 			</div>
