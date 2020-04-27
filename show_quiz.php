@@ -381,6 +381,8 @@
         </div>
     </noscript>
     <?php if ($show_start) {?>
+	<div class="lwd-quiz-begin">
+	</div>
     <div id="mtq_instructions-<?php echo $mtqid ?>" class="mtq_instructions">
         <?php echo stripslashes($quiz_options->description)?></div>
     <div id="mtq_start_button-<?php echo $mtqid ?>" class='mtq_action_button mtq_css_button mtq_start_button'

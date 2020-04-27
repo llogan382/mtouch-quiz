@@ -523,3 +523,9 @@ display: grid;
   div#score {
 	/* font-size: 5vmin; */
   }
+
+  .lwd-quiz-begin{
+	  background-image: url('images/quiz-begin.png') no-repeat center fixed;
+	  background-size: cover;
+	  height: 20rem;
+  }
