@@ -166,7 +166,7 @@ Super Light: #eff2ff
 */
 .mtq_color_blue .mtq_css_button, .mtq_color_blue .mtq_css_letter_button { /* Dark Button with white text*/
 	color:#fff;
-	background:#06F;
+	background:#4640DE;
 }
 .mtq_color_blue .mtq_quiz_results_bubble, .mtq_color_blue .mtq_list_item_complete, .mtq_color_blue .mtq_shaded_item_msg, .mtq_color_blue .mtq_hint, .mtq_color_blue .mtq_hint_label, .mtq_color_blue .mtq_hint_text { /*Super Dark Text with Light background*/
 	color:#339;

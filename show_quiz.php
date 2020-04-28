@@ -23,7 +23,7 @@
 
 
 
-		$quiz_options = $wpdb->get_row($wpdb->prepare("SELECT name,description,answer_mode,single_page,show_hints,show_start,show_final,multiple_chances,final_screen,random_questions,random_answers FROM {$wpdb->prefix}mtouchquiz_quiz WHERE ID=%d", $quiz_id));
+		$quiz_options = $wpdb->get_row($wpdb->prepare("SELECT name,description,new_header,answer_mode,single_page,show_hints,show_start,show_final,multiple_chances,final_screen,random_questions,random_answers FROM {$wpdb->prefix}mtouchquiz_quiz WHERE ID=%d", $quiz_id));
 		$final_screen = stripslashes($quiz_options->final_screen);
 		$answer_display = stripslashes($quiz_options->answer_mode);
 		$single_page = stripslashes($quiz_options->single_page);
@@ -381,8 +381,22 @@
         </div>
     </noscript>
     <?php if ($show_start) {?>
+	<div class="lwd-quiz-begin">
+	</div>
+
+
     <div id="mtq_instructions-<?php echo $mtqid ?>" class="mtq_instructions">
-        <?php echo stripslashes($quiz_options->description)?></div>
+
+	<div class="lwd-start-header">
+	<?php echo stripslashes($quiz_options->description)?></div>
+	</div>
+
+
+    <div>
+        <?php echo stripslashes($quiz_options->new_header)?>
+		</div>
+
+
     <div id="mtq_start_button-<?php echo $mtqid ?>" class='mtq_action_button mtq_css_button mtq_start_button'
         onclick='mtq_start_quiz(<?php echo $mtqid ?>)'>
         <div class="mtq_start_text">
