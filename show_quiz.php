@@ -381,21 +381,23 @@
         </div>
     </noscript>
     <?php if ($show_start) {?>
-	<div class="lwd-quiz-begin">
-	</div>
-
-	<div class="lwd-quiz-begin-icon"></div>
-
-    <div id="mtq_instructions-<?php echo $mtqid ?>" class="mtq_instructions">
-
-	<div class="lwd-start-header">
-	<?php echo stripslashes($quiz_options->description)?></div>
-	</div>
 
 
-    <div id="lwd-start-content">
+	<div id="mtq_instructions-<?php echo $mtqid ?>" class="mtq_instructions">
+
+		<div class="lwd-quiz-begin">
+		</div>
+
+		<div class="lwd-quiz-begin-icon"></div>
+		<div class="lwd-start-header">
+		<?php echo stripslashes($quiz_options->description)?></div>
+	    <div id="lwd-start-content">
         <?php echo stripslashes($quiz_options->new_header)?>
 		</div>
+	</div>
+
+
+
 
 
     <div id="mtq_start_button-<?php echo $mtqid ?>" class='mtq_action_button mtq_css_button mtq_start_button'
