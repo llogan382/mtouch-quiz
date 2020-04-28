@@ -384,6 +384,7 @@
 	<div class="lwd-quiz-begin">
 	</div>
 
+	<div class="lwd-quiz-begin-icon"></div>
 
     <div id="mtq_instructions-<?php echo $mtqid ?>" class="mtq_instructions">
 
@@ -392,7 +393,7 @@
 	</div>
 
 
-    <div>
+    <div id="lwd-start-content">
         <?php echo stripslashes($quiz_options->new_header)?>
 		</div>
 

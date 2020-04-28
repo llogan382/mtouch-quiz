@@ -134,6 +134,7 @@ border-radius: 15px;
 }
 .mtq_quiz_area {
 	text-align: left;
+	width: 100%;
 }
 .mtq_hint {
 	display: none;
@@ -529,12 +530,23 @@ display: grid;
 	  background-size: cover;
 	  height: 20rem;
   }
-
+  .lwd-quiz-begin-icon{
+	background: url('images/list-icon.png') no-repeat center bottom;
+	width: 100%;
+	height: 88px;
+	margin-top: -2rem;
+  }
   .lwd-start-header{
 	font-family: DM Sans;
+	margin: 1em 3em;
 	font-style: normal;
 	font-weight: bold;
 	font-size: 25.63px;
 	line-height: 33px;
 	text-align: center;
+  }
+  #lwd-start-content{
+	  padding: 25px;
+	  max-width: 700px!important;
+margin: auto;
   }
