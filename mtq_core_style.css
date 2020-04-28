@@ -156,7 +156,7 @@ border-radius: 15px;
 	display: block;
 }
 .mtq_instructions {
-	display: none;
+	/* display: none; */
 	margin-bottom: 1em;
 }
 .mtq_javawarning {
@@ -525,7 +525,16 @@ display: grid;
   }
 
   .lwd-quiz-begin{
-	  background-image: url('images/quiz-begin.png') no-repeat center fixed;
+	  background-image: url('images/quiz-begin.png');
 	  background-size: cover;
 	  height: 20rem;
+  }
+
+  .lwd-start-header{
+	font-family: DM Sans;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 25.63px;
+	line-height: 33px;
+	text-align: center;
   }

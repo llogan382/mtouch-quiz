@@ -8,7 +8,7 @@ if($_REQUEST['action'] == 'edit') $action = 'edit';
 $dquiz = array();
 if($action == 'edit') {
 	$clean_quiz = intval($_REQUEST['quiz']);
-	$dquiz = $wpdb->get_row($wpdb->prepare("SELECT name,description,final_screen,answer_mode,single_page,show_hints,show_start, show_final,multiple_chances,random_questions,random_answers FROM {$wpdb->prefix}mtouchquiz_quiz WHERE ID=%d", $clean_quiz));
+	$dquiz = $wpdb->get_row($wpdb->prepare("SELECT name,description,new_header,final_screen,answer_mode,single_page,show_hints,show_start, show_final,multiple_chances,random_questions,random_answers FROM {$wpdb->prefix}mtouchquiz_quiz WHERE ID=%d", $clean_quiz));
 	$final_screen = stripslashes($dquiz->final_screen);
 	$answer_display = stripslashes($dquiz->answer_mode);
 	$single_page = stripslashes($dquiz->single_page);
@@ -54,9 +54,11 @@ if($action == 'edit') {
           <!--p align="right"> <a class="button toggleVisualtwo"><?php _e('Visual', 'mtouchquiz') ?></a> <a class="button toggleHTMLtwo"><?php _e('HTML', 'mtouchquiz') ?></a> </p-->
         <div class="inside">
         <textarea rows='1' cols='50' style='width:100%' name='name' id='name' class='name'><?php echo stripslashes($dquiz->name); ?></textarea>
-          <!--input type='text' name='name' id="title" value='<?php //echo stripslashes($dquiz->name); ?>' /-->
+
         </div>
       </div>
+
+
       <div class="postbox">
         <h3 class="hndle"> <span>
           <?php _e('Quiz Start Screen', 'mtouchquiz') ?>
@@ -66,6 +68,19 @@ if($action == 'edit') {
           <textarea name='description' rows='5' cols='50' style='width:100%' id='description' class='description'><?php echo stripslashes($dquiz->description); ?></textarea>
         </div>
       </div>
+
+
+      <div class="postbox">
+        <h3 class="hndle"> <span>
+        <?php _e('Quiz Subheader Screen', 'mtouchquiz') ?>
+          </span> </h3>
+        <!--p align="right"> <a class="button toggleVisual"><?php _e('Visual', 'mtouchquiz') ?></a> <a class="button toggleHTML"><?php _e('HTML', 'mtouchquiz') ?></a> </p-->
+        <div class="inside">
+          <textarea name='new_header' rows='5' cols='50' style='width:100%' id='new_header' class='new_header'><?php echo stripslashes($dquiz->new_header); ?></textarea>
+        </div>
+      </div>
+
+
             <div class="postbox mtq_premium_feature"><div class="mtq_email"></div>
         <h3 class="hndle">
            <a href="http://gmichaelguy.com/quizplugin/go/premium/" title="Results Form" target="_blank">Results Form ID</a> <?php echo "(".__('For Email Submission of Quiz Results','mtouchquiz').")"?> Works best with <a href="http://gmichaelguy.com/quizplugin/go/gravity/" title="Find out about Gravity Forms" target="_blank">Gravity Forms</a></h3>

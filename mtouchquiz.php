@@ -157,7 +157,7 @@ echo '<div class="wrap" id="mtouchquiz-options">
         <font size="-2">
         <?php _e("I already supported mTouch Quiz or prefer not to.", 'mtouchquiz'); ?>
         </font></th>
-      <td><input type="checkbox" name="show_support" value="1" id="show_support" <?php if (get_option(mtouchquiz_show_support)=='false') {echo " checked='checked'"; } ?> /></td>
+
     </tr>
   </table>
   <!-- <?php _e('I will email my completed translation file to Michael at gmichaelguy.com so that others can benefit from my work. ;-)', 'mtouchquiz'); ?>-->
@@ -757,6 +757,7 @@ function mtq_activate() {
 					ID int(11) unsigned NOT NULL auto_increment,
 					name varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
 					description mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+					new_header mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
 					final_screen mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
 					form_code varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL default '',
 					added_on datetime NOT NULL,
@@ -797,3 +798,8 @@ add_action('init', 'enqueue_lwd');
 
 
 // wp_enqueue_script('mtq_script', WP_CONTENT_URL . '/plugins/mtouch-quiz/script.js',array('jquery'),mtq_VERSION,false);
+
+
+
+
+
