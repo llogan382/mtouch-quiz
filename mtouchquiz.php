@@ -704,11 +704,59 @@ return $return_string;
 //	//UPDATE wp_mtouchquiz_question SET `sort_order`=`ID`
 //}
 
-
-add_action('activate_mtouch-quiz/mtouchquiz.php','mtq_activate');
-function mtq_activate() {
+// This function registers the custom table with WordPress and should be called early on every request.
+function myplugin_register_table() {
 	global $wpdb;
 
+	// If the table name is already registered, just bail.
+	if ( in_array( 'myplugin_table', $wpdb->tables, true ) ) {
+	return;
+	}
+
+	$wpdb->myplugin_table = $wpdb->prefix . 'myplugin_table';
+	$wpdb->tables[] = 'myplugin_table';
+	}
+
+
+	register_activation_hook( __FILE__, 'mtq_activate_multi' );
+
+
+
+add_action('init','mtq_activate_multi');
+function mtq_activate_multi($network) {
+	global $wpdb;
+
+    if (function_exists('is_multisite') && is_multisite()) {
+        // check if it is a network activation - if so, run the activation function for each blog id
+        if ($networkwide) {
+                    $old_blog = $wpdb->blogid;
+            // Get all blog ids
+            $blogids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
+            foreach ($blogids as $blog_id) {
+                switch_to_blog($blog_id);
+                mtq_activate_single();
+            }
+            switch_to_blog($old_blog);
+            return;
+        }
+    }
+    mtq_activate_single();
+}
+
+
+}
+
+
+
+
+
+
+function mtq_activate_single() {
+	global $wpdb;
+
+
+	  // Register the name of your custom table with WordPress (see function below).
+	  myplugin_register_table();
 	$database_version = mtq_database_version;
 	$installed_db = get_option('mtouchquiz_db_version');
 	// Initial options.
@@ -780,6 +828,9 @@ function mtq_activate() {
 		update_option( "mtouchquiz_db_version", $database_version );
 	}
 }
+
+
+
 
 function mtq_color_options()
 {
