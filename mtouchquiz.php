@@ -723,16 +723,22 @@ function myplugin_register_table() {
 
 
 add_action('init','mtq_activate_multi');
-function mtq_activate_multi($network) {
+function mtq_activate_multi($networkwide) {
 	global $wpdb;
+
 
     if (function_exists('is_multisite') && is_multisite()) {
         // check if it is a network activation - if so, run the activation function for each blog id
         if ($networkwide) {
                     $old_blog = $wpdb->blogid;
             // Get all blog ids
-            $blogids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
+			$blogids = $wpdb->get_col("SELECT blog_id FROM $wpdb->blogs");
+
             foreach ($blogids as $blog_id) {
+
+				echo '<script>';
+				echo "console.log('. $blogids . ')";
+				echo '</script>';
                 switch_to_blog($blog_id);
                 mtq_activate_single();
             }
@@ -744,7 +750,6 @@ function mtq_activate_multi($network) {
 }
 
 
-}
 
 
 
@@ -753,6 +758,9 @@ function mtq_activate_multi($network) {
 
 function mtq_activate_single() {
 	global $wpdb;
+	echo '<script>';
+	echo 'console.log("activate single")';
+	echo '</script>';
 
 
 	  // Register the name of your custom table with WordPress (see function below).
